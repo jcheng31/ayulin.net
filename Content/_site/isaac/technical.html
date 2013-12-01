@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ISAAC: Behind the Scenes</title>
+	<link rel = "stylesheet" type = "text/css" href = "./style.css" />
+	<script type="text/javascript">
+
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-30573274-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+
+		</script>
+</head>
+<body>
+	<div class = "back"><a href = "./index.html">back to ISAAC</a></div>
+	<div>
+		<h1 class = "nomargin">ISAAC - the code beneath.</h1>
+		<h3>A look at the stuff that makes ISAAC work.</h3>
+
+		<h2 class = "nomargin">What's ISAAC made of?</h2>
+		<p>Lots of code, really. Oh, and a few textures.</p>
+
+		<p>Graphics are handled by the excellent <a href="http://mrdoob.github.com/three.js/">three.js</a> library.</p>
+
+		<p>Planet textures came from <a href = "http://planetpixelemporium.com/planets.html">JHT's Planetary Pixel Emporium</a>.</p>
+
+		<p>Planet data (initial positions and velocities) was taken from the Jet Propulsion Laboratory's <a href = "http://ssd.jpl.nasa.gov/?horizons">HORIZONS</a> system.</p>
+
+		<p>The GUI uses <a href = "http://code.google.com/p/dat-gui/">dat.GUI</a>.</p>
+
+		<p>ISAAC itself is written in plain old vanilla JavaScript.</p>
+
+		<h2 class = "nomargin">More details!</h2>
+		<p>
+			First up: ISAAC is a work-in-progress. We'll be gradually adding features and improving existing ones over time.
+		</p>
+		<p>
+			ISAAC uses HTML5's Canvas element (or more accurately, three.js does) to render graphics.</br>
+			We use three.js' WebGL renderer if we detect your browser supports it, but fall back to the Canvas renderer if not. Several graphical features are also disabled in the Canvas renderer.
+		</p>
+		<p>
+			Physics calculations are done at a rate of 60 "ticks" per second, separate from the actual display frame rate.</br>
+			It's OK if the display frame rate is less than 60 FPS - planets are rendered at the latest position calculated.
+		</p>
+		<p>
+			We use HTML5 Web Workers to push physics calculation to its own thread. Unfortunately, ISAAC won't work if your browser doesn't support these - you'll still see the Solar System, but none of the planets will move.</br>
+		</p>
+
+		<h2 class = "nomargin">What <i>exactly</i> can I do in ISAAC?</h2>
+		<h3 class = "nomargin">AKA: features.</h3>
+		<p>
+			We simulate the gravitational force between all the planets - they aren't just affected solely by the Sun.
+		</p>
+		<p>
+			You can pan the camera around by clicking and dragging the mouse. Click on a planet to jump to it, and zoom in and out by holding the middle mouse button down and dragging the mouse. Alternatively, you can choose a planet and zoom level manually from the GUI.
+		</p>
+		<p>
+			The mass of each and every planet you see can be adjusted. Use the slider in the corresponding planet's menu.
+		</p>
+		<p>
+			The gravitational constant itself can be played with - use the slider in the Simulation Settings menu.
+		</p>
+		<p>
+			Things moving a little too slowly? Speed time up with the Days Per Second slider in Simulation Settings.
+		</p>
+
+		<h2 class = "nomargin">Licensing Information</h2>
+		<p>
+			ISAAC is licensed under the MIT License. Grab the <a href = "https://github.com/isaacjs/ISAAC">source code</a> on github.
+		</p>
+		<p>
+			Look out for updates <a href = "http://www.ayulin.net/blog/?cat=3">here.</a>
+		</p>
+	</div>
+</body>
+</html>

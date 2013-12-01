@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<link href = 'http://fonts.googleapis.com/css?family=Open+Sans' rel = 'stylesheet' type = 'text/css'>
+	<link href ='./960_24_col.css' rel = 'stylesheet' type = 'text/css'>
+	<script type ="text/javascript" src = "./app.js"></script>
+	<script type = "text/javascript" src = "./ui.js"></script>
+	<script type="text/javascript">
+
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-30573274-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+
+	</script>
+	<meta charset="UTF-8">
+	<title>4-bit Webther</title>
+
+	<style type = "text/css">
+	body { 
+		-ms-transition: 1s;
+		transition: 1s;
+		-webkit-transition: 1s;
+		-moz-transition: 1s;
+		-o-transition: 1s;
+		font-family: "Open Sans", "Segoe UI", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+	}
+	p, h1 {
+		margin: 0px 0px 0px 0px;
+	}
+	input {
+		text-align: center;
+	}
+	.verticalCentre {
+		margin-top: 10%;
+	}
+	.smallerText {
+		font-size: 80%;
+	}
+	.footer {
+		position: fixed;
+		bottom: 0;
+		right: 0;
+
+		background-color: gray;
+		color: white;
+		padding: 0px 5px 0px 5px;
+	}
+	.hidden {
+		display: none;
+	}
+	.gap {
+		margin-top: 5px;
+	}
+	.settingsBar {
+		background-color: gray;
+		padding-top: 4px;
+		text-align: center;
+	}
+	.settingsBar img, .button {
+		cursor: pointer;
+	}
+	.nightMode {
+		background-color: black;
+	}
+	.content, .mainUI {
+		background-color: gray;
+		color: white;
+		text-align: center;
+	}
+	.mainUI {
+		padding: 5px 10px 5px 10px;
+	}
+	.bigGap {
+		margin-top: 15px;
+	}
+	#resetSettings {
+		background-color: red;
+	}
+	</style>
+</head>
+<body onload = "initialise()">
+	<div class = "verticalCentre container_24">
+		<div class = "prefix_18 grid_2">
+			<div class = "settingsBar">
+				<img onclick = "nightMode()" title = "Night Mode" src = "./nightMode.png" />
+				<img onclick = "toggleSettingsPane()" title = "Settings" src = "./settings.png" />
+			</div>
+		</div>
+		<div id = "loading" class = "prefix_4 grid_16 gap"><p class = "mainUI">Loading...</p></div>
+		<div id = "location" class = "hidden">
+			<div class = "prefix_4 grid_16 gap">
+				<p id = "youreIn" class = "mainUI">Here's the weather for </p>
+			</div>
+			<div id = "container" class = "prefix_4 grid_16 gap">
+				<div class = "grid_4 alpha content" id = "hotCold">
+					Hot/Cold
+					<h1 id = "hotColdHead"></h1>
+					<div class = "smallerText" id = "hotColdContent"></div>
+				</div>
+				<div class = "grid_4 content" id = "rainShine">
+					Rain/Shine
+					<h1 id = "rainShineHead"></h1>
+					<div class = "smallerText" id = "rainShineContent"></div>
+				</div>
+				<div class = "grid_4 content" id = "windyStill">
+					Windy/Still
+					<h1 id = "windyStillHead"></h1>
+					<div class = "smallerText" id = "windyStillContent"></div>
+				</div>
+				<div class = "grid_4 omega content" id = "humidArid">
+					Humid/Arid
+					<h1 id = "humidAridHead"></h1>
+					<div class = "smallerText" id = "humidAridContent"></div>
+				</div>
+			</div>
+			<div class = "prefix_4 grid_16 gap smallerText">
+				<p class = "mainUI button" id = "reportDate" onclick = "refreshWeather()"></p>
+			</div>
+			<div class = "prefix_10 grid_4 gap" >
+				<p id = "changeLocation" class = "button mainUI" onclick = "locationFailed()">Change Location</p>
+			</div>
+		</div>
+		<div id = "unknownLoc" class = "hidden">
+			<div class = "gap prefix_4 grid_16">
+				<p class = "mainUI">Tell us the place you want a forecast for.</p>
+			</div>
+			<div class = "prefix_4 grid_16 gap">
+				<p class = "mainUI">Leave this blank, and we'll try figure out where you are.</p>
+			</div>
+			<div class = "prefix_4 grid_16 gap">
+				<div class = "mainUI">
+					<input type="text" id="userLocation" onkeypress = "if(event.keyCode === 13) { changeLocation(); }"/>
+					<input type="submit" onclick = "changeLocation()" />
+				</div>
+			</div>
+		</div>
+		<div id = "settingsPane" class = "hidden">
+			<div id = "savedLocation" class = "gap prefix_4 grid_16">
+				<p class = "mainUI">
+					<label id = "rememberText" for = "rememberLoc">Remember this location for future visits </label>
+					<input type = "checkbox" id = "rememberLoc" />
+				</p>
+			</div>
+			<div class = "prefix_4 grid_16 gap">
+				<div class = "grid_5 alpha content">
+					Hot/Cold Threshold
+					<br />
+					<input type = "text" id = "hotColdThreshold" size = 5/>
+					<div class = "smallerText" id = "hotColdUnits">Temperature, in </div>
+				</div>
+				<div class = "grid_6 content">
+					Windy/Still Threshold
+					<br />
+					<input type = "text" id = "windyStillThreshold" size = 5/>
+					<div class = "smallerText" id = "windyStillUnits">Wind Speed, in </div>
+				</div>
+				<div class = "grid_5 omega content">
+					Humid/Arid Threshold
+					<br />
+					<input type = "text" id = "humidAridThreshold" size = 5/>
+					<div class = "smallerText">Relative Humidity, in %</div>
+				</div>
+			</div>
+			<div class = "prefix_4 grid_16 gap" id = "unitsPicker">
+				<p class = "mainUI">
+					Units:
+					<input type = "radio" id = "celsiusRadio" name = "units" value = "c" onclick = "convertUnits()"/><label for = "celsiusRadio">Celsius & km/h</label>
+					<input type = "radio" id = "fahrenheitRadio" name = "units" value = "f" onclick = "convertUnits()"/><label for = "fahrenheitRadio">Fahrenheit & mph</label>
+				</p>
+			</div>
+			<div class = "prefix_4 grid_16 bigGap">
+				<div class = "alpha grid_4" id = "saveSettings" onclick = "saveSettings()">
+					<p class = "mainUI button">Save Changes</p>
+				</div>
+				<div class = "grid_4" id = "cancelSettings" onclick = "toggleSettingsPane()">
+					<p class = "mainUI button">Cancel</p>
+				</div>
+				<div class = "omega prefix_4 grid_4">
+					<p id = "resetSettings" class = "mainUI button" onclick = "resetSettings()">
+						Reset Settings
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class = "footer smallerText">Weather data provided by Yahoo! Weather.</div>
+</body>
+</html>

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+<!--Planet Textures courtesy of James Hastings-Trew, http://planetpixelemporium.com/planets.html -->
+<head>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<meta charset="UTF-8">
+	<title>...eppur si muove.</title>
+	<script type="text/javascript">
+
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-30573274-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+
+		</script>
+	<script type = "text/javascript" src = "./external/Three.js"></script>
+	<script type = "text/javascript" src = "./external/dat.gui.min.js"></script>
+	<script type = "text/javascript" src = "./external/Stats.js"></script>
+
+	<script type = "text/javascript" src = "./isaac_core.js"></script>
+	<script type = "text/javascript" src = "./isaac_math.js"></script>
+	<script type = "text/javascript" src = "./isaac_obj.js"></script>
+	<script type = "text/javascript" src = "./isaac_graphics.js"></script>
+	<script type = "text/javascript" src = "./isaac_simulation.js"></script>
+	<script type = "text/javascript" src = "./isaac_queue.js"></script>
+
+
+	<style type = "text/css">
+	body { 
+		margin: 0px; 
+		overflow: hidden;
+		background-color: black;
+	}
+	.overlay {
+		margin-left: auto;
+		margin-right: auto;
+		width: 25em;
+		position: fixed;
+		display: block;
+
+		pointer-events: none;
+		z-index: 50;
+		padding: 0px 3px 0px 3px;
+		border: solid 1px white;
+		color: white;
+
+		font-family: "Open Sans", "Segoe UI", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+		font-size: 90%;
+		text-align: justify;
+	}
+	.tooltip {
+		position: absolute;
+		color: white;
+		background-color: gray;
+		opacity: 0.8;
+		-moz-opacity: 0.8;
+		filter:alpha(opacity=8);
+		border-radius: 5px;
+		padding: 2px 5px 2px 5px;
+		
+		font-family: "Open Sans", "Segoe UI", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+		font-size: 90%;
+	}
+	.hidden {
+		display: none;
+	}
+	</style>
+</head>
+<body>
+	<div id = "tooltips">
+		<div class = "hidden" id = "massMultTooltip">This value is multiplied by the original mass of the body.</div>
+		<div class = "hidden" id = "timestepTooltip">One second in real time is this amount of days in the simulation.</div>
+		<div class = "hidden" id = "gcmTooltip">
+			This value is multiplied by the Gravitational Constant.
+			<p>
+				The force of gravity between two bodies is given by
+				multiplying	the Gravitational Constant by the masses
+				of the bodies, then dividing the result by the
+				square of the distance between them.
+			</p>
+
+			By adjusting the Gravitational Constant, gravitational force
+			is changed all throughout the solar system (and the universe!)
+		</div>
+	</div>
+	<div id="renderArea"></div>
+
+	<script type = "text/javascript">
+			// Tooltips. So, so hackish >.>
+			var massMultShow = function() { document.getElementById("massMultTooltip").className = "overlay"; };
+			var massMultHide = function() { document.getElementById("massMultTooltip").className = "hidden"; };
+			var timestepShow = function() { document.getElementById("timestepTooltip").className = "overlay"; };
+			var timestepHide = function() { document.getElementById("timestepTooltip").className = "hidden"; };
+			var gcmShow = function() { document.getElementById("gcmTooltip").className = "overlay"; };
+			var gcmHide = function() { document.getElementById("gcmTooltip").className = "hidden"; };
+			
+			// Stats (for debugging)
+			var stats;
+
+			// Camera movement-related variables.
+			var isMouseDown = false;
+			var middleMouseDown = false;
+			var mouseLastX, mouseLastY;
+			var cameraAngleX = 0;
+			var cameraAngleY = 0;
+			var cameraDist = 200;
+			var origin = new THREE.Vector3(0, 0, 0);
+			var camFocusGUI;
+			
+			
+			init();
+			
+			function init() {
+				// Get the renderArea.
+				var renderArea = document.getElementById('renderArea');
+				
+				// Check if we have WebGL support using a temporary canvas.
+				var tempCanvas = document.createElement('canvas');
+				try {
+					ISAAC.Graphics.webGLEnabled = window.WebGLRenderingContext && (tempCanvas.getContext("webgl") || tempCanvas.getContext("experimental-webgl"));	
+				} catch (x) {
+					ISAAC.Graphics.webGLEnabled = false;
+				}
+				console.log(ISAAC.Graphics.webGLEnabled ? "WebGL supported. Using WebGLRenderer." : "WebGL unsupported. Using CanvasRenderer.");
+
+				// Setup the renderer.
+				ISAAC.Graphics.THREE.renderer = ISAAC.Graphics.webGLEnabled ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
+				ISAAC.Graphics.THREE.renderer.setSize(window.innerWidth, window.innerHeight);
+				renderArea.appendChild(ISAAC.Graphics.THREE.renderer.domElement);
+				ISAAC.Graphics.THREE.renderer.setClearColorHex(0x000000, 1.0);
+				ISAAC.Graphics.THREE.renderer.clear();
+
+				// -------------
+				// Startup code is found in isaac_simulation.js
+				// -------------
+				startISAAC();
+				
+				// ------ FPS Counter (for debug only) ------ //
+				stats = new Stats();
+				stats.getDomElement().style.position = 'absolute';
+				stats.getDomElement().style.left = '0px';
+				stats.getDomElement().style.bottom = '0px';
+				
+				document.body.appendChild( stats.getDomElement() );
+				
+				setInterval( function () { stats.update(); }, 1000 / 60 );
+				// ------ End of FPS Counter ------ //
+			}
+			
+			function animUpdate() {
+				// Ping the worker to get updated positions.
+				ISAAC.Simulation.worker.postMessage({'command' : 'get'});
+
+				// Fly the camera in (for initialisation).
+				if(!ISAAC.Graphics.freeCamera) {
+					if(cameraDist > 200) {
+						// Decrease the distance, and rotate the camera.
+						cameraDist -= 25;
+						cameraAngleX += 10;
+					} else {
+						ISAAC.Graphics.freeCamera = true;
+					}
+				}				
+				
+				// Update the graphical representations of the objects.
+				for(var i = 0; i < ISAAC.Simulation.bodies.length; i++) {
+					var currModel = ISAAC.Graphics.models[i];
+					var currBody = ISAAC.Simulation.bodies[i];
+
+					// Save the current position before updating it.
+					currModel.prevPositions.enqueue(currModel.position);
+					ISAAC.Graphics.objUpdate(currBody, currModel);
+
+					// Remove the existing velocity and acceleration vectors.
+					ISAAC.Graphics.THREE.scene.remove(ISAAC.Graphics.velLines[i]);
+					ISAAC.Graphics.THREE.scene.remove(ISAAC.Graphics.accelLines[i]);
+
+					// Remove the existing motion trail.
+					ISAAC.Graphics.THREE.scene.remove(ISAAC.Graphics.trails[i]);
+
+					if(ISAAC.Config.showVectors) {
+						// Create a new line to represent the acceleration vector.
+						var accelGeometry = new THREE.Geometry();
+						accelGeometry.vertices.push(currModel.position);
+
+						// Scale the acceleration of the body so that it is visible when represented as a line.
+						var accelScaled = ISAAC.Math.scaleVector(currBody.motion.acceleration, 1e11);
+						accelScaled = ISAAC.Math.addVector(ISAAC.Math.vectorFitToLength(currBody.motion.acceleration, currModel.radius + 5), accelScaled);
+						accelScaled = ISAAC.Math.addVector(currBody.motion.position, accelScaled);
+						var accelVertexEnd = new THREE.Vector3(accelScaled[0], accelScaled[2], accelScaled[1]);
+						accelGeometry.vertices.push(accelVertexEnd);
+						var accelLine = new THREE.Line(accelGeometry, new THREE.LineBasicMaterial({ "color" : currModel.colour }));
+
+						// Create a new line to represent the velocity vector.
+						var velGeometry = new THREE.Geometry();
+						velGeometry.vertices.push(currModel.position);
+
+						// Scale the velocity of the body so that it is visible when represented as a line.
+						var endPosition = ISAAC.Math.scaleVector(currBody.motion.velocity, 1e5);
+						endPosition = ISAAC.Math.addVector(ISAAC.Math.vectorFitToLength(currBody.motion.velocity, currModel.radius + 5), endPosition);
+						endPosition = ISAAC.Math.addVector(currBody.motion.position, endPosition);
+						var velVertexEnd = new THREE.Vector3(endPosition[0], endPosition[2], endPosition[1]);
+						velGeometry.vertices.push(velVertexEnd);
+						var velLine = new THREE.Line(velGeometry, new THREE.LineBasicMaterial({ "color" : (currModel.colour << 2)}));
+
+						// Add the lines to the scene, and keep track of them.
+						ISAAC.Graphics.THREE.scene.add(accelLine);
+						ISAAC.Graphics.THREE.scene.add(velLine);
+						ISAAC.Graphics.velLines[i] = velLine;
+						ISAAC.Graphics.accelLines[i] = accelLine;
+					}
+
+					// if(ISAAC.Config.showTrails) {
+					// 	// Get the points to plot the motion trail.
+					// 	var trailGeometry = new THREE.Geometry();
+					// 	for(var i = 0; i < currModel.prevPositions.contents.length; i += 5) {
+					// 		var curr = currModel.prevPositions.contents[i];
+					// 		trailGeometry.vertices.push(curr);
+					// 	}
+
+					// 	if(trailGeometry.vertices.length > 2) {
+					// 		// Create the line from the points.
+					// 		var motionPath = new THREE.Line(trailGeometry, new THREE.LineBasicMaterial({ "color" : (currModel.colour + 5)}));
+
+					// 		// Add the path to the scene, and keep track of it.
+					// 		ISAAC.Graphics.THREE.scene.add(motionPath);
+					// 		ISAAC.Graphics.trails[i] = motionPath;
+					// 	}
+					// }
+				}
+
+				// Update the position of any lights to be that of their respective bodies.
+				for(var i = 0; i < ISAAC.Graphics.lights.length; i++) {
+					var currLight = ISAAC.Graphics.lights[i];
+					var currBody = ISAAC.Simulation.bodies[currLight.number];
+					currLight.position.x = currBody.motion.position[0];
+					currLight.position.y = currBody.motion.position[2];
+					currLight.position.z = currBody.motion.position[1];
+				}
+
+				// Update the camera's position.
+				var cameraFocus = ISAAC.Simulation.bodies[ISAAC.Config.cameraFocus];
+
+				// Calculate the horizontal camera offset.
+				ISAAC.Graphics.camera.offsetX = cameraDist * Math.cos(cameraAngleX * Math.PI / 360);
+				ISAAC.Graphics.camera.offsetZ = cameraDist * Math.sin(cameraAngleX * Math.PI / 360);
+
+				// Calculate the vertical camera offset.
+				ISAAC.Graphics.camera.offsetY = cameraDist * Math.sin(cameraAngleY * Math.PI / 360);
+				ISAAC.Graphics.camera.offsetX *= Math.cos(cameraAngleY * Math.PI / 360);
+				ISAAC.Graphics.camera.offsetZ *= Math.cos(cameraAngleY * Math.PI / 360);
+
+				// If we're transitioning, transition. If not, translate the camera to the planet.
+				if(ISAAC.Graphics.camera.transitioning && ISAAC.Config.cameraTransitions) {
+					// Get the vector from the current camera position to the destination planet.
+					var cameraPos = [ISAAC.Graphics.THREE.camera.position.x, ISAAC.Graphics.THREE.camera.position.z, ISAAC.Graphics.THREE.camera.position.y];
+					var offset = [ISAAC.Graphics.camera.offsetX, ISAAC.Graphics.camera.offsetZ, ISAAC.Graphics.camera.offsetY];
+					var destPos = ISAAC.Math.addVector(offset, cameraFocus.motion.position);
+					var travelVector = ISAAC.Math.subtractVector(destPos, cameraPos);
+
+					// If we're less than two units from the destination, we're done.
+					var lengthTravelVect = ISAAC.Math.vectorLength(travelVector);
+					if(lengthTravelVect < 2) {
+						ISAAC.Graphics.camera.transitioning = false;
+					} else {
+						// Move along that vector. Speed determined by the distance remaining to travel.
+						travelVector = ISAAC.Math.vectorFitToLength(travelVector, lengthTravelVect / 10);
+						ISAAC.Graphics.THREE.camera.position.x += travelVector[0];
+						ISAAC.Graphics.THREE.camera.position.z += travelVector[1];
+						ISAAC.Graphics.THREE.camera.position.y += travelVector[2];
+					}
+				} else {
+					// Translate the camera.
+					ISAAC.Graphics.THREE.camera.position.x = ISAAC.Graphics.camera.offsetX + cameraFocus.motion.position[0];
+					ISAAC.Graphics.THREE.camera.position.z = ISAAC.Graphics.camera.offsetZ + cameraFocus.motion.position[1];
+					ISAAC.Graphics.THREE.camera.position.y = ISAAC.Graphics.camera.offsetY + cameraFocus.motion.position[2];
+				}
+
+				// If the absolute mouse delta is not less than 1, give the camera inertia.
+				if(ISAAC.Graphics.camera.mouseXDelta > 1) {
+					cameraAngleX += ISAAC.Graphics.camera.mouseXDelta;
+					ISAAC.Graphics.camera.mouseXDelta -= 0.5;
+				} else if(ISAAC.Graphics.camera.mouseXDelta < 1) {
+					cameraAngleX += ISAAC.Graphics.camera.mouseXDelta;
+					ISAAC.Graphics.camera.mouseXDelta += 0.5;
+				}
+
+				// Point the camera at the planet.
+				ISAAC.Graphics.THREE.camera.lookAt(new THREE.Vector3(cameraFocus.motion.position[0], cameraFocus.motion.position[2], cameraFocus.motion.position[1]));
+
+				// Setup continuous updates.
+				window.requestAnimationFrame(animUpdate, ISAAC.Graphics.THREE.renderer.domElement);
+				
+				// Render!
+				ISAAC.Graphics.THREE.renderer.render(ISAAC.Graphics.THREE.scene, ISAAC.Graphics.THREE.camera);
+			}
+			
+			animUpdate();
+
+			// Projector to detect the planet under the mouse.
+			var projector = new THREE.Projector();
+
+			// Add hooks for mouse events, to move the camera around.
+			document.addEventListener('mousedown', onDocumentMouseDown, false);
+			document.addEventListener('mouseup', onDocumentMouseUp, false);
+			document.addEventListener('mousemove', onDocumentMouseMove, false);
+
+			// Add hook for resize events.
+			window.addEventListener('resize', pageResize, false);
+			
+			// Handles page resizing.
+			function pageResize() {
+				var width = window.innerWidth;
+				var height = window.innerHeight;
+				
+				ISAAC.Graphics.THREE.renderer.setSize(width, height);
+				ISAAC.Graphics.THREE.camera.aspect = width/height;
+				ISAAC.Graphics.THREE.camera.updateProjectionMatrix();
+			}
+			
+			// Handles mousedown events.
+			function onDocumentMouseDown(event) {
+				var element;
+
+				// Check if the mouse is over the canvas.
+				if(event.target) {
+					element = event.target.nodeName;
+				}
+				
+				if(element === 'CANVAS') {
+					// Only adjust the camera's position if the mouse was over the canvas and the left-mouse button was clicked.
+					if(event.button === 0) {
+						isMouseDown = true;
+
+						// Wipe the camera inertia.
+						ISAAC.Graphics.camera.mouseXDelta = 0;
+						ISAAC.Graphics.camera.mouseYDelta = 0;
+
+						// If the mouse clicked a planet, move the camera to it.						
+						if(ISAAC.Graphics.intersects.length > 0) {
+							if(ISAAC.Config.cameraTransitions) {
+								ISAAC.Graphics.camera.transitioning = true;
+							}
+							ISAAC.Config.cameraFocus = ISAAC.Graphics.intersects[0].object.number;
+							camFocusGUI.updateDisplay();
+						}
+					}
+
+					// If the middle mouse button is held, flag it.
+					if(event.button === 1) {
+						middleMouseDown = true;
+					}
+				}
+			}
+			
+			// Handles mouseup events.
+			function onDocumentMouseUp(event) {
+				isMouseDown = false;
+				middleMouseDown = false;
+				
+				// Send updated settings to the worker.
+				ISAAC.Simulation.worker.postMessage({'command' : 'set', 'updateStep' : ISAAC.Config.updateStep, 'gravConstMult' : ISAAC.Config.gravConstMult, 'bodyArray' : ISAAC.Simulation.bodies});
+			}
+			
+			// Handles mousemove events. Used to move the camera.
+			function onDocumentMouseMove(event) {
+				// Get the position of the mouse.
+				var mouseX = event.clientX;
+				var mouseY = event.clientY;
+
+				// Check if the left mouse button is down.
+				if(isMouseDown && ISAAC.Graphics.freeCamera) {
+					// Get the delta of the mouse's position.
+					ISAAC.Graphics.camera.mouseXDelta = mouseX - mouseLastX;
+					ISAAC.Graphics.camera.mouseYDelta = mouseY - mouseLastY;
+
+					// Add the corresponding rotation to the camera angle.
+					cameraAngleX += ISAAC.Graphics.camera.mouseXDelta;
+					
+					// Restrict camera panning to 90 degrees up or down.
+					if(cameraAngleY > 175) {
+						cameraAngleY = 175;
+					} else if(cameraAngleY < -175) {
+						cameraAngleY = -175;
+					} else {
+						cameraAngleY += ISAAC.Graphics.camera.mouseYDelta;
+					}
+				} 
+
+				// If middle mouse is down, zoom in or out.
+				if(middleMouseDown && ISAAC.Graphics.freeCamera) {
+					ISAAC.Graphics.camera.mouseYDelta = mouseY - mouseLastY;
+
+					// Restrict camera zooming to the same range as the UI allows.
+					if(cameraDist > 2000) {
+						cameraDist = 2000;
+					} else if(cameraDist < 5) {
+						cameraDist = 5;
+					} else {
+						cameraDist += ISAAC.Graphics.camera.mouseYDelta;
+					}
+				}
+				mouseLastX = event.clientX;
+				mouseLastY = event.clientY;
+
+				// Figure out what planets the mouse is intersecting.
+				var camera = ISAAC.Graphics.THREE.camera;
+				var vector = new THREE.Vector3((mouseX / window.innerWidth) * 2 - 1, -(mouseY / window.innerHeight) * 2 + 1, 0.5);
+				projector.unprojectVector(vector, camera);
+				var ray = new THREE.Ray(camera.position, vector.subSelf(camera.position).normalize());
+				ISAAC.Graphics.intersects = ray.intersectObjects(ISAAC.Graphics.models);
+
+				// Remove the previous planet name tooltip.
+				if(ISAAC.Graphics.lastTooltip) {
+					document.getElementById("tooltips").removeChild(ISAAC.Graphics.lastTooltip);
+					ISAAC.Graphics.lastTooltip = undefined;
+					ISAAC.Graphics.lastIntersected = undefined;
+				}
+
+				// If the mouse is intersecting a planet, display its name.
+				if(ISAAC.Graphics.intersects.length > 0) {
+					// Get the name of the intersected planet.
+					var intersectedObj = ISAAC.Graphics.intersects[0].object.name;
+
+					// If the intersected planet is not the same as the last one, create a div and display it.
+					if(ISAAC.Graphics.lastIntersected !== intersectedObj) {
+						var nameDiv = document.createElement('div');
+						nameDiv.id = "nameTooltip";
+						nameDiv.className = "tooltip";
+						var divContents = document.createTextNode(intersectedObj);
+						nameDiv.appendChild(divContents);
+
+						document.getElementById("tooltips").appendChild(nameDiv);
+						nameDiv.style.left = "" + mouseLastX + "px";
+						nameDiv.style.top = "" + (mouseLastY - 25) + "px";
+						ISAAC.Graphics.lastIntersected = intersectedObj;
+						ISAAC.Graphics.lastTooltip = nameDiv;
+					}
+				}
+			}
+
+			// Pause when we aren't visible.
+			function pageHidden() {
+				ISAAC.Simulation.worker.postMessage( {'command' : 'pause'} );
+				ISAAC.title = document.title;
+				document.title = "Paused: " + ISAAC.title;
+			}
+			function pageVisible() {
+				ISAAC.Simulation.worker.postMessage( {'command' : 'resume'} );
+				document.title = ISAAC.title;
+			}
+			// Figure out which Page Visibility handler to use.
+			if(typeof document.hidden !== "undefined") {
+				document.addEventListener("visibilitychange", visibilityHandler);
+			} else if (typeof document.webkitHidden !== "undefined") {
+				document.addEventListener("webkitvisibilitychange", visibilityHandler);
+			} else if (typeof document.msHidden !== "undefined") {
+				document.addEventListener("msvisibilitychange", visibilityHandler);
+			} else if (typeof document.mozHidden !== "undefined") {
+				document.addEventListener("mozvisibilitychange", visibilityHandler);
+			}
+			// Define the visibility handler.
+			function visibilityHandler() {
+				if(typeof document.hidden !== "undefined") {
+					if(document.hidden) {
+						pageHidden();
+					} else {
+						pageVisible();
+					}
+				} else if (typeof document.webkitHidden !== "undefined") {
+					if(document.webkitHidden) {
+						pageHidden();
+					} else {
+						pageVisible();
+					}
+				} else if (typeof document.msHidden !== "undefined") {
+					if(document.msHidden) {
+						pageHidden();
+					} else {
+						pageVisible();
+					}
+				} else if (typeof document.mozHidden !== "undefined") {
+					if(document.mozHidden) {
+						pageHidden();
+					} else {
+						pageVisible();
+					}
+				}
+			}
+			</script>
+		</body>
+		</html>

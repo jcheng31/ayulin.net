@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fourcast: Weather, Simplified.</title>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../css/mainStyle.css" />
+	<link rel="stylesheet" type="text/css" href="./style.css" />
+	<script type="text/javascript">
+
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-30573274-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+	<style type="text/css">
+		.justify {
+			text-align: justify;
+		}
+		ul {
+			list-style-type: circle;
+		}
+	</style>
+</head>
+<body>
+	<div><a href="../index.html">back to home</a></div>
+	<div class = "container">
+		<div class = "row">
+			<div class = "col-sm-3">
+				<img class="img-responsive" src = "./img/1.png" />
+				<p class = "justify">You only really need to know 4 things about the weather. Fourcast puts them up front.</p>
+			</div>
+			<div class = "col-sm-3">
+				<img class="img-responsive" src = "./img/3.png" />
+				<p class = "justify">Everyone has different tolerances. Tell Fourcast yours, and it'll use them.</p>
+			</div>
+			<div class = "col-sm-3">
+				<img class="img-responsive" src = "./img/2.png" />
+				<p class = "justify">Weather for where you're at, where you're going, or where you want to be.</p>
+			</div>
+			<div class = "col-sm-3">
+				<img class="img-responsive" src = "./img/4.png" />
+				<p class = "justify">Glance and go. Get the essentials right from your Start screen.</p>
+			</div>
+		</div>
+		<div class = "row">
+			<div class = "col-sm-9">
+				<h1>Changelog</h1>
+				<div class="row col-sm-12">
+					<h2>v1.0 - 26 November 2013 <small>"Window cleaning."</small></h2>
+					<p>A cleaner while still familiar main UI.</p>
+					<ul>
+						<li>
+							No Forecast Loaded: No Forecast Loaded - No Forecast Loaded. <strong>No more.</strong>
+							<ul>	
+								<li>
+									Reduced the number of "No Forecast Loaded" messages that are displayed.
+									<ul>
+										<li>
+											It really doesn't need to be displayed thrice.
+											<ul>
+												<li>Should've figured that one out earlier.</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li>Centred and capitalised the headers above each forecast element.</li>
+						<li>
+							Removed the "(Map)" link next to Station Names. Station maps can now be accessed by tapping the underlined name directly.
+							<ul>
+								<li>Stations without a map will not have their names underlined.</li>
+							</ul>
+						</li>
+						<li>Removed the headers above the Station Name and Forecast Time labels.</li>
+						<li>Removed the white borders around each forecast element.</li>
+					</ul>
+				</div>
+				<div class="row col-sm-12">
+					<h2>v0.9.1 - 04 October 2013 <small>"Tiles online."</small></h2>
+					<p>Tweaks and fixes for the Live Tiles.</p>
+					<ul>
+						<li>Fixed an issue that caused the Live Tiles to not update on clean installations of the app.</li>
+						<li>Changed the back of the tiles to display the last time an update was retrieved.</li>
+					</ul>
+				</div>
+				<div class="row col-sm-12">
+					<h2>v0.9 - 19 July 2013 <small>"Setting settings."</small></h2>
+					<p>Settings UI tweaks, architectural improvements, and bug fixes.</p>
+					<ul>
+						<li>Added the ability to view estimated forecasts - these are for locations where Weather Underground has no weather station, indicated by "(Estimated)" in the station name.</li>
+						<li>Made the buttons on the Settings page stretch to fit the entire page width. Groundbreaking stuff.</li>
+						<li>Changed the way in which the app handles and saves settings internally.</li>
+						<li>Changed the Pick a Place error messages to be more friendly (though you hopefully won't have to see them.)</li>
+						<li>Fixed an issue that would cause the keypad to appear after removing the Home Location.</li>
+						<li>Fixed an issue that would cause the app to crash when searching for locations when on a WiFi network with browser-based login.</li>
+					</ul>
+				</div>
+				<div class="row col-sm-12">
+					<h2>v0.8.1 - 24 January 2013 <small>"The Right Time for the Right Place."</small></h2>
+					<p>Minor changes relating to dates and time.</p>
+					<ul>
+						<li>Changed the way in which the app parses dates, which should make it handle different locales more easily. (Read: without crashing.)</li>
+						<li>The app now displays time according to your device's 24-hour time preference.</li>
+					</ul>
+				</div>
+				<div class="row col-sm-12">
+					<h2>v0.8 - 17 January 2013 <small>"Fixing things."</small></h2>
+					<p>Fixes for a crash bug, and improved crash reporting mechanisms.</p>
+					<ul>
+						<li>Fixed an issue that would cause the app to crash on startup. <a href="http://www.ayulin.net/blog/?p=70">Details here.</a>
+						</li>
+						<li>Improved the way the application handles and reports crashes.</li>
+					</ul>
+				</div>
+
+				<div class="row col-sm-12">
+					<h2>v0.7 - 15 December 2012 <small>"From the Ashes."</small></h2>
+					<p class="nomargin">Higher resolution tiles, backend architectural improvements, bug fixes, and optimisations.</p>
+					<ul>
+						<li>Improved the resolution of Live Tiles on WP7.8 and WP8 devices.</li>
+						<li>Fixed an issue that could cause crashes when parsing weather in certain locales.</li>
+						<li>Removed unnecessary reference to the Coding4Fun Audio toolkit. The app should no longer advertise a Microphone requirement that it doesn't need or use. (Oops.)</li>
+						<li>Improved the way in which Conditions are parsed and labelled.</li>
+						<li>Reorganised and refactored large portions of the backend.</li>
+					</ul>
+				</div>
+
+				<div class="row col-sm-12">
+					<h2 >v0.6 - 23 August 2012  <small>"Do the Dew (Point)."</small></h2>
+					<p >What's the Dew Point? Where exactly is the Weather Station located? Wonder no more.</p>
+					<ul>
+						<li>Added Dew Point approximation to all forecasts.</li>
+						<li>Added a link to view a map of the Weather Station's location, if available.</li>
+						<li>Changed the Pick a Place icon to be more intuitive.</li>
+						<li>Added contact and feedback links to About page.</li>
+						<li>Various minor UI tweaks.</li>
+					</ul>
+				</div>
+
+				<div class="row col-sm-12">
+					<h2>v0.5 - 28 July 2012  <small>"Hello. More tiles here."</small></h2>
+					<p>Get your current location as a tile, jump straight into Pick a Place, and know when your forecast has loaded without having to stare at the screen.</p>
+					<ul>
+						<li>Paid users: Added the ability to pin a Geolocation Tile to Start.
+							This tile updates with the weather from the station closest to your location.
+						</li>
+						<li>Added the ability to pin Pick a Place to Start.</li>
+						<li>Added haptic feedback upon loading a forecast. This can be disabled in Settings.</li>
+						<li>Added the ability to send crash reports via email.</li>
+					</ul>
+				</div>
+
+				<div class="row col-sm-12">
+					<h2>v0.4 - 14 July 2012  <small>"The comma is <i>evil.</i>"</small></h2>
+					<p>Tile tweaking, UI improvements, and several bug fixes relating to commas.</p>
+					<ul>
+						<li>Paid users: Added the ability to control the frequency of Live Tile updates.</li>
+						<li>Paid users: Updated the text on Live Tile Settings to reflect restrictions on the amount of Tiles that will be updated.</li>
+						<li>Added anonymous usage data collection. The Privacy Policy has been updated to take this into account.</li>
+						<li>Improved the way the UI handles the scenario where weather hasn't been loaded or is loading.</li>
+						<li>Added missing ScrollViewers to forecasts other than "now".</li>
+						<li>Fixed an issue that would prevent geolocation on a device using a formatting locale where "," is the decimal delimiter.</li>
+						<li>Fixed an issue where the app would crash when parsing weather on a device using a formatting locale where "," is the decimal delimiter.</li>
+					</ul>
+				</div>
+
+				<div class="row col-sm-12">
+					<h2 >v0.3 - 06 July 2012  <small>"Tiles, of the Live variety."</small></h2>
+					<p >Shiny, new tiles have landed.</p>
+					<ul>
+						<li>Pin locations to the Start screen to jump to them quickly.</li>
+						<li>Live Tile support (for Paid users) - get weather updates on tiles without opening the app.</li>
+						<li>Updated the Weather Underground logo on the About page to comply with their logo guidelines.</li>
+						<li>Updated Fourcast's logo on the main tile and phone Application List.</li>
+						<li>Miscellaneous backend tweaks.</li>
+					</ul>
+				</div>
+
+				<div class="row col-sm-12">
+					<h2 >v0.2 - 21 June 2012</h2>
+					<p>First release of Fourcast on the Windows Phone Marketplace.</p>
+				</div>
+			</div>
+
+			<div class = "col-sm-3">
+				<img class = "logoBackground" src = "./img/Logo.png"/>
+				<h1>Download</h1>
+				<p>Ad-free, untimed trial.</p>
+				<p>Paid version adds Live Tile updates.</p>
+				<a href="http://windowsphone.com/s?appid=4d21bde6-841b-484d-a7c9-95c7a1e5cd56">
+					<img src="./img/Download.png" />
+				</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
