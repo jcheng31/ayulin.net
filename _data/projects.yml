@@ -1,0 +1,43 @@
+- {
+    name: Fourcast,
+    period: May 2012 to Present,
+    platform: Windows Phone 7/8 (C# and XAML),
+    url: ./fourcast/index.html,
+    img: ./img/Fourcast.png,
+    description: [
+        "Fourcast is a weather app with the same idea as 4-bit Webther, but that's where the similarities end. It distills weather forecasts down into their four most important components: the temperature, conditions, wind speed, and relative humidity.",
+        "Fourcast is available on the <a href='http://windowsphone.com/s?appid=4d21bde6-841b-484d-a7c9-95c7a1e5cd56'>Windows Phone Store</a>. It uses <a href='http://www.wunderground.com/?apiref=1e19de373d7ed5c0'>Weather Underground</a> for its data."
+    ]
+}
+
+- {
+    name: ISAAC,
+    period: December 2011 to May 2012,
+    platform: HTML and JavaScript,
+    url: ./isaac/index.html,
+    img: ./img/ISAAC.png,
+    description: [
+        "ISAAC was my first JavaScript project. It's basically a browser-based star system simulator - like Universe Sandbox, but much simpler.",
+        "<a href='https://github.com/isaacjs/ISAAC'>ISAAC's code</a> is released under the MIT License. It uses the <a href='http://threejs.org'>three.js library</a> for graphics."
+    ]
+}
+
+- {
+    name: 4-bit Webther,
+    period: May 2012,
+    platform: HTML and JavaScript,
+    img: ./img/Webther.png,
+    description: [
+        "4-bit Webther was a side project built for fun, using the Yahoo! Weather API. The main motivation behind it was to get something running without any other frameworks or libraries."
+    ]
+}
+
+- {
+    name: Calendo,
+    period: August to October 2012,
+    platform: .NET Framework (C# and XAML),
+    img: ./img/Calendo.png",
+    description: [
+        "Calendo is a command-based task management program, built for CS2103/T Software Engineering's group project. I was responsible for the UI, including the command-suggestion feature."
+    ]
+}

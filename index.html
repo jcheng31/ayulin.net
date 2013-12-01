@@ -41,37 +41,45 @@ title: ayulin.net - "it's dot com!"
 </div>
 
 <div class="row">
+	{% assign currentRow = 1 %}
 	{% for project in site.data.projects %}
 	<div class="col-sm-6">
 		<div class="panel panel-default">
-			<h1 class="no-margin-top">
+			<div class="panel-body">
+				<h1 class="no-margin-top">
+					{% if project.url %}
+					<a href="{{ project.url }}">
+					{% endif %}
+						{{ project.name }}
+					{% if project.url %}
+					</a>
+					{% endif %}
+					<small>
+						{{ project.period }}
+					</small>
+				</h1>
+				<h4 class="no-margin-top">
+					{{ project.platform }}
+				</h4>
 				{% if project.url %}
 				<a href="{{ project.url }}">
 				{% endif %}
-					{{ project.name }}
+				<img class="img-responsive" src="{{ project.img }}" />
 				{% if project.url %}
 				</a>
 				{% endif %}
-				<small>
-					{{ project.period }}
-				</small>
-			</h1>
-			<h4 class="no-margin-top">
-				{{ project.platform }}
-			</h4>
-			{% if project.url %}
-			<a href="{{ project.url }}">
-			{% endif %}
-			<img class="img-responsive" src="{{ project.img }}" />
-			{% if project.url %}
-			</a>
-			{% endif %}
-			{% for paragraph in project.description %}
-			<p>
-				{{ paragraph }}
-			</p>
-			{% endfor %}
+				{% for paragraph in project.description %}
+				<p>
+					{{ paragraph }}
+				</p>
+				{% endfor %}
+			</div>
 		</div>
 	</div>
+	{% if forloop.index == 2 * currentRow %}
+	</div>
+	<div class="row">
+	{% endif %}
+
 	{% endfor %}
 </div>
