@@ -1,13 +1,77 @@
----
-layout: default
-title: ayulin.net - "it's dot com!"
+--- 
+layout: default 
+title: ayulin.net - "it's dot com!" 
 ---
 
-<div id="home">
-  <h1>Blog Posts</h1>
-  <ul class="posts">
-    {% for post in site.posts %}
-      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
-    {% endfor %}
-  </ul>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="page-header">
+            <h1>
+                Hello.
+            </h1>
+        </div>
+        <div>
+            <p>
+                My name's Jerome Cheng. I'm an undergraduate studying Computer Science at the National University of Singapore.
+            </p>
+            <p>
+                I usually go by <i>Ayulin</i> online. I can be found on <a href="https://twitter.com/Ayulin">Twitter</a> or <a href="https://steamcommunity.com/id/Ayulin">Steam</a>.
+            </p>
+            <p>
+                Occasionally I ramble about things <a href="./blog/">here</a>, or on <a href="https://medium.com/@Ayulin">Medium</a> (though the keyword really is "occasionally".)
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="page-header">
+            <h1>
+                Things.
+                <small>(Some) stuff I've worked on.</small>
+            </h1>
+        </div>
+        <div>
+            <p>
+                Here're a few of the projects I've been involved with. Anything not included here is probably on <a href="https://www.github.com/jcheng31">GitHub</a>.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+	{% for project in site.data.projects %}
+	<div class="col-sm-6">
+		<div class="panel panel-default">
+			<h1 class="no-margin-top">
+				{% if project.url %}
+				<a href="{{ project.url }}">
+				{% endif %}
+					{{ project.name }}
+				{% if project.url %}
+				</a>
+				{% endif %}
+				<small>
+					{{ project.period }}
+				</small>
+			</h1>
+			<h4 class="no-margin-top">
+				{{ project.platform }}
+			</h4>
+			{% if project.url %}
+			<a href="{{ project.url }}">
+			{% endif %}
+			<img class="img-responsive" src="{{ project.img }}" />
+			{% if project.url %}
+			</a>
+			{% endif %}
+			{% for paragraph in project.description %}
+			<p>
+				{{ paragraph }}
+			</p>
+			{% endfor %}
+		</div>
+	</div>
+	{% endfor %}
 </div>
