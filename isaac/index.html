@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Physics! And Planets!</title>
+	<link rel="stylesheet" type="text/css" href="./style.css" />
+	<script type="text/javascript">
+
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-30573274-1']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+
+	</script>
+</head>
+<body>
+	<div class = "back"><a href="../index.html">back to home</a></div>
+	<div>
+		<h1 class = "nomargin">ISAAC: the Solar System, in your browser.</h1>
+		<h3>Well, kind of.</h3>
+
+		<h2 class = "nomargin">What is ISAAC?</h2>
+		<p>ISAAC is a star system simulator, with a force-based physics engine at its heart.</p>
+
+		<h2 class = "nomargin">A what?</h2>
+		<p>ISAAC's core layer approximates the way objects move, based on the forces acting upon them.</p>
+		<p>It's based entirely around two formulae.</p>
+		<div>
+			<ol class = "nocentre">
+				<li>F = ma (Force is Mass multiplied by Acceleration)</li>
+				<li>v = u + at (Current Velocity is Previous Velocity plus Acceleration multiplied by Time)</li>
+			</ol>
+		</div>
+		<p>
+			We calculate an object's acceleration based on its mass and the force acting upon it,</br>
+			calculate its velocity	based on its acceleration, </br>
+			then calculate a new position for the object based on its velocity.
+		</p>
+
+		<h2 class = "nomargin">Okay. What's this about the Solar System, then?</h2>
+		<p>ISAAC can simulate star systems given a simple set of specifications. So we built a model of the Solar System with it.</p>
+		<p>Change the Gravitational Constant. Fiddle with the mass of things. See how things react.</p>
+		<h1 class = "nomargin"><a href="./orbitPhys.html">Play with the Planets.</a></h1>
+		<p><a href="./technical.html">I want to know more.</a></p>
+		<p><a href="./edge.html">Neat, but where's the new stuff?</a></p>
+	</div>
+</body>
+</html>

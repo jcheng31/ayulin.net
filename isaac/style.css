@@ -1,0 +1,37 @@
+h1, h2, h3, h4, h5, h6, p, li, a {
+	font-family: "Segoe UI", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+	font-weight: 100;
+}
+h1 {
+	font-size:36px;
+}
+h2 {
+	font-size:24px;
+}
+h3 {
+	font-size:20px;
+}
+body {
+	text-align: center;
+	list-style-position: inside;
+}
+div {
+	width: 62.5%;
+	margin-left: auto;
+	margin-right: auto;
+}
+a {
+	color: darkblue;
+}
+.nocentre {
+	text-align: left;
+}
+.nomargin {
+	margin-bottom: -15px;
+}
+.back {
+	text-align: left;
+	margin-bottom: -25px;
+	margin-top: -10px;
+	margin-left: 0;
+}
