@@ -55,7 +55,7 @@
 				<h1>Changelog</h1>
 				{% for patch in site.categories.fourcast patches %}
 					<div class="row col-sm-12">
-						<h2>{{ patch.version }} - {{ patch.date | date_to_long_string }} {% if patch.tagline %}<small>"{{ patch.tagline }}"</small>{% endif %}</h2>
+						<h2>{{ patch.version }} - {{ patch.date | date_to_long_string }} {% if patch.description %}<small>"{{ patch.description }}"</small>{% endif %}</h2>
 						{{ patch.content }}
 					</div>
 				{% endfor %}
