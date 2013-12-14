@@ -1,9 +1,17 @@
 // Main logic module for ISAAC.
 
-var ISAAC = ISAAC || { release: "1" };
+var ISAAC = ISAAC || { release: "2 - Dev" };
 ISAAC.Constants = ISAAC.Constants || {};
 ISAAC.Core = ISAAC.Core || {};
-ISAAC.Config = ISAAC.Config || {"updateStep" : 1, "gravConstMult" : 1, "cameraFocus" : 0};
+ISAAC.Defaults = {};
+ISAAC.Defaults.Config = function () { 
+	this.updateStep = 1; 
+	this.gravConstMult = 1; 
+	this.cameraFocus = 0; 
+	this.showVectors = false; 
+	this.showTrails = false; 
+	this.cameraTransitions = true};
+ISAAC.Config = ISAAC.Config || new ISAAC.Defaults.Config();
 
 // Units
 // Distance: gigameters
@@ -36,7 +44,13 @@ ISAAC.Core.movementModule = function (obj) {
 // Adjusts the position of the object, based on the velocity vector.
 ISAAC.Core.velocityModule = function (obj) {
 	if (obj.switches.motionEnabled) {
-		obj.motion.position = ISAAC.Math.addVector(obj.motion.position, ISAAC.Math.scaleVector(obj.motion.velocity, ISAAC.Constants.timeStep));
+		var firstDegreeTerm = ISAAC.Math.scaleVector(obj.motion.velocity, ISAAC.Constants.timeStep);
+
+		//This is certainly the wrong equation (causes closer planets to spiral into the sun)
+		//var secondDegreeTerm = ISAAC.Math.scaleVector(obj.motion.acceleration, ISAAC.Math.sqr(ISAAC.Constants.timeStep));
+
+		var secondDegreeTerm = [0, 0, 0];
+		obj.motion.position = ISAAC.Math.addVector(obj.motion.position, ISAAC.Math.addVector(firstDegreeTerm, secondDegreeTerm));
 		return true;
 	}
 	return false;
@@ -46,9 +60,6 @@ ISAAC.Core.velocityModule = function (obj) {
 // Adjusts the velocity of the object, based on the acceleration vector.
 ISAAC.Core.accelerationModule = function (obj) {
 	if (obj.switches.accelerationEnabled) {
-		//		obj.Position.velX += (obj.Position.accelX * ISAAC.Constants.timeStep);
-		//		obj.Position.velY += (obj.Position.accelY * ISAAC.Constants.timeStep);
-		//		obj.Position.velZ += (obj.Position.accelZ * ISAAC.Constants.timeStep);
 		obj.motion.velocity = ISAAC.Math.addVector(obj.motion.velocity, ISAAC.Math.scaleVector(obj.motion.acceleration, ISAAC.Constants.timeStep));
 		return true;
 	}
@@ -65,18 +76,14 @@ ISAAC.Core.forceModule = function(obj) {
 		// Iterate through the forces acting on the object and add them
 		// to the resultant force.
 		for(var force in obj.forceStore) {
-			for(var i = 0; i < 3; i++) {
-				newResultant[i] += obj.forceStore[force][i];
-			}
+				newResultant = ISAAC.Math.addVector(newResultant, obj.forceStore[force]);
 		}
 		
 		// Set the resultant force.
 		obj.resultantForce = newResultant;
 		
 		// Adjust the object's acceleration based on the resultant force.
-		for(var i = 0; i < 3; i++) {
-			obj.motion.acceleration[i] = obj.resultantForce[i] / obj.physical.mass;
-		}
+		obj.motion.acceleration = ISAAC.Math.scaleVector(obj.resultantForce, 1/obj.physical.mass);
 		
 		// Reset the forceChanged switch.
 		obj.switches.forceChanged = false;

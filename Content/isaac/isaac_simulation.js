@@ -27,6 +27,14 @@ ISAAC.Simulation = ISAAC.Simulation || {};
 // - accelerationEnabled : Default true. Whether or not this object will have acceleration calculated for it.
 
 ISAAC.Simulation.init = function (JSON) {
+	ISAAC.Graphics.enabled = JSON.config.graphicsEnabled;
+
+	// Reset the system.
+	ISAAC.Simulation.reset();
+
+	// Store the JSON.
+	ISAAC.Simulation.specifications = JSON;
+
 	// Create the Orbital Body objects.
 	ISAAC.Simulation.bodies = [];
 	for(var key in JSON.bodies) {
@@ -37,6 +45,57 @@ ISAAC.Simulation.init = function (JSON) {
 		if(JSON.config.graphicsEnabled) {
 			ISAAC.Graphics.createModel(curr, JSON.config.scaling);
 		}
+	}
+
+	// Setup graphics, if applicable.
+	if(JSON.config.graphicsEnabled) {
+		ISAAC.Graphics.init();
+	}
+
+	// Setup the Web Worker.
+	ISAAC.Simulation.worker = new Worker('isaac_worker.js');
+	ISAAC.Simulation.worker.postMessage({'command' : 'set', 'updateStep' : ISAAC.Config.updateStep, 'gravConstMult' : ISAAC.Config.gravConstMult, 'bodyArray' : ISAAC.Simulation.bodies});
+
+	// Define what to do when we receive a message from the worker.
+	ISAAC.Simulation.worker.addEventListener('message', function (e) {
+		var data = e.data.response;
+		if(typeof data !== 'undefined') {
+			for(var i = 0; i < data.length; i++) {
+				var currBody = ISAAC.Simulation.bodies[i];
+				
+				// Update our simulation state.
+				// We don't just copy the data array to avoid
+				// overwriting each object's config.
+				currBody.motion.position = data[i].motion.position;
+				currBody.motion.velocity = data[i].motion.velocity;
+				currBody.motion.acceleration = data[i].motion.acceleration;
+			}
+		}
+	}, false);
+}
+
+ISAAC.Simulation.reset = function() {
+	// Halt the worker.
+	if(ISAAC.Simulation.worker) {
+		ISAAC.Simulation.worker.terminate();
+	}
+
+	// Remove any existing UI elements.
+	if(ISAAC.Graphics.guiDOMElement) {
+		ISAAC.Graphics.guiDOMElement.parentNode.removeChild(ISAAC.Graphics.guiDOMElement);
+	}
+
+	// Reset graphics, if needed.
+	if(ISAAC.Graphics.enabled) {
+		ISAAC.Graphics.reset();
+	}
+}
+
+ISAAC.Simulation.restart = function() {
+	// Only execute if we already have a set of specifications.
+	if(ISAAC.Simulation.specifications) {
+		ISAAC.Config = new ISAAC.Defaults.Config();
+		ISAAC.Simulation.init(ISAAC.Simulation.specifications);
 	}
 }
 
