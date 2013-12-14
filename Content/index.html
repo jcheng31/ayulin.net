@@ -1,85 +1,83 @@
 --- 
-layout: default 
+layout: default
 title: ayulin.net - "it's dot com!" 
 ---
 
-<div class="row">
+<div class="container">
+  <div class="row">
     <div class="col-sm-12 center-text">
-        <div class="page-header">
-            <h1>
-                Hello.
-            </h1>
-        </div>
-        <div>
-            <p>
-                My name's Jerome Cheng. I'm an undergraduate studying Computer Science at the National University of Singapore.
-            </p>
-            <p>
-                I usually go by <i>Ayulin</i> online, and can be found on <a href="https://twitter.com/Ayulin">Twitter</a> or <a href="https://steamcommunity.com/id/Ayulin">Steam</a>.
-            </p>
-            <p>
-                Occasionally I ramble about things <a href="./blog/">here</a>, or on <a href="https://medium.com/@Ayulin">Medium</a> (though the keyword really is "occasionally".)
-            </p>
-        </div>
+      <div class="page-header">
+        <h1>
+          Hello.
+        </h1>
+      </div>
+      <div>
+        <p>
+          My name's Jerome Cheng. I'm an undergraduate studying Computer Science at the National University of Singapore.
+        </p>
+        <p>
+          I usually go by <i>Ayulin</i> online, and can be found on <a href="https://twitter.com/Ayulin">Twitter</a> or <a href="https://steamcommunity.com/id/Ayulin">Steam</a>.
+        </p>
+        <p>
+          Occasionally I ramble about things <a href="./blog/">here</a>, or on <a href="https://medium.com/@Ayulin">Medium</a> (though the keyword really is "occasionally".)
+        </p>
+      </div>
     </div>
-</div>
+  </div>
 
-<div class="row">
+  <div class="row">
     <div class="col-sm-12 center-text">
-        <div class="page-header">
-            <h1>
-                Things.
-                <small>(Some) stuff I've worked on.</small>
-            </h1>
-        </div>
-        <div>
-            <p>
-                Here're a few of the projects I've been involved with. Anything not included here is probably on <a href="https://www.github.com/jcheng31">GitHub</a>.
-            </p>
-        </div>
+      <div class="page-header">
+        <h1>
+          Things.
+          <small>(Some) stuff I've worked on.</small>
+        </h1>
+      </div>
+      <div>
+        <p>
+          Here're a few of the projects I've been involved with. Anything not included here is probably on <a href="https://www.github.com/jcheng31">GitHub</a>.
+        </p>
+      </div>
     </div>
-</div>
+  </div>
 
-<div class="row">
-	{% assign currentRow = 1 %}
-	{% for project in site.data.projects %}
-	<div class="col-sm-6 center-text">
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<h1 class="no-margin-top">
-					{% if project.url %}
-					<a href="{{ project.url }}">
-					{% endif %}
-						{{ project.name }}
-					{% if project.url %}
-					</a>
-					{% endif %}
-					<small>
-						{{ project.period }}
-					</small>
-				</h1>
-				<h4 class="no-margin-top">
-					{{ project.platform }}
-				</h4>
-				{% if project.url %}
-				<a href="{{ project.url }}">
-				{% endif %}
-				<img class="img-responsive" src="{{ project.img }}" />
-				{% if project.url %}
-				</a>
-				{% endif %}
-				{% for paragraph in project.description %}
-				<p>
-					{{ paragraph }}
-				</p>
-				{% endfor %}
-			</div>
-		</div>
-	</div>
-	{% if forloop.index == 2 * currentRow %}
-	</div>
-	<div class="row">
-	{% endif %}
-
-	{% endfor %}
+  <div class="row">
+    {% assign currentRow = 1 %} {% for project in site.data.projects %}
+    <div class="col-sm-6 center-text">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h1 class="no-margin-top">
+            {% if project.url %}
+            <a href="{{ project.url }}">
+        {% endif %}
+          {{ project.name }}
+        {% if project.url %}
+        </a>
+            {% endif %}
+            <small>
+              {{ project.period }}
+            </small>
+          </h1>
+          <h4 class="no-margin-top">
+            {{ project.platform }}
+          </h4>
+          {% if project.url %}
+          <a href="{{ project.url }}">
+      {% endif %}
+      <img class="img-responsive" src="{{ project.img }}" />
+      {% if project.url %}
+      </a>
+          {% endif %} {% for paragraph in project.description %}
+          <p>
+            {{ paragraph }}
+          </p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% if forloop.index == 2 * currentRow %}
+  </div>
+  <div class="row">
+    {% endif %} {% endfor %}
+  </div>
 </div>
