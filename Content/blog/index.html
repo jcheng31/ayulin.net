@@ -1,30 +1,18 @@
 --- 
-layout: default 
+layout: blog 
 title: blog 
 ---
 
-<div class="blog-wrapper">
-  <div class="border-right left-sidebar">
-    <div class="row center-text">
-      <img src="./img/profile.jpg" class="img-circle image-border">
-      <h3>Jerome Cheng</h3>
-      <p class="subtle">Geek. Gamer. TCK.</p>
-      <a href="/">Home</a>
-    </div>
-  </div>
-
-
-  <div class="blog-body">
-    {% for post in site.posts %}
-    <div class="blog-post">
-      <a href="{{ post.url }}">
-        <h2>{{ post.title }}</h2>
-      </a>
+{% for post in site.posts %}
+  <div class="blog-post-listing">
+    <a class="blog-post-link" href="{{ post.url }}">
+      <h2><strong>{{ post.title }}</strong></h2>
+      {% if post.description %}
+        <h4 class="no-margin-top">{{ post.description }}</h4>
+      {% endif %}
       <h5 class="subtle no-margin-top">
-        Published {{ post.date | date_to_long_string }}
+        Published {{ post.date | date_to_long_string }} | {{ post.content | reading_time }} read
       </h5>
-      {{ post.excerpt }}
-      </div>
-    {% endfor %}
-  </div>
-</div>
+    </a>
+    </div>
+{% endfor %}
