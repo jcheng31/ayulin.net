@@ -29,13 +29,28 @@ p {
 .left-sidebar {
   padding: 24px 0;
 }
-@media (min-width: 970px) {
+.blog-body {
+  padding: 0 24px;
+}
+@media (min-width: 768px) {
   .left-sidebar {
     height: 100%;
+    position: fixed;
     margin-right: 24px;
-    float: left;
+    bottom: 0;
+    width: 25%;
+  }
+  .blog-body {
+    float: right;
+    width: 75%;
   }
 }
-.full-width-container {
-  padding: 0 15px;
+
+@media (min-width: 970px) {
+  .left-sidebar {
+    width: 20%;
+  }
+  .blog-body {
+    width: 80%;
+  }
 }

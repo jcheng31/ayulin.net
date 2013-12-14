@@ -3,7 +3,7 @@ layout: default
 title: blog 
 ---
 
-<div class="col-md-2 border-right left-sidebar">
+<div class="border-right left-sidebar">
   <div class="row center-text">
     <img src="./img/profile.jpg" class="img-circle image-border">
     <h3>Jerome Cheng</h3>
@@ -13,8 +13,9 @@ title: blog
 </div>
 
 
-<div class="col-md-9 blog">
+<div class="blog-body">
   {% for post in site.posts %}
+  <div class="blog-post">
     <a href="{{ post.url }}">
       <h2>{{ post.title }}</h2>
     </a>
@@ -22,5 +23,6 @@ title: blog
       Published {{ post.date | date_to_long_string }}
     </h5>
     {{ post.excerpt }}
+    </div>
   {% endfor %}
 </div>
