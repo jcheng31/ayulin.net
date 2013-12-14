@@ -32,6 +32,16 @@ p {
 .blog-body {
   padding: 0 24px;
 }
+.blog-post-listing {
+  margin: 64px 0;
+}
+.blog-post-link {
+  color: inherit;
+}
+.blog-post-link:hover, .blog-post-link:active {
+  text-decoration: inherit;
+  color: inherit;
+}
 @media (min-width: 768px) {
   .left-sidebar {
     height: 100%;
