@@ -64,3 +64,12 @@ p {
     margin-left: 325px;
   }
 }
+.blog-post-wrapper {
+  margin-top: 64px;
+}
+.subtitle {
+  color: #666665;
+}
+.blog-post-body p {
+  font-size: 120%;
+}
