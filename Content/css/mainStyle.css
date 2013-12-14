@@ -39,18 +39,18 @@ p {
     margin-right: 24px;
     bottom: 0;
     width: 25%;
+    max-width: 300px;
   }
   .blog-body {
-    float: right;
-    width: 75%;
+    margin-left: 25%;
+    max-width: 70%
   }
 }
-
-@media (min-width: 970px) {
-  .left-sidebar {
-    width: 20%;
+@media (min-width: 1920px) {
+  .blog-wrapper {
+    margin: 0 15%;
   }
   .blog-body {
-    width: 80%;
+    margin-left: 325px;
   }
 }
