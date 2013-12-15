@@ -4,18 +4,18 @@ title: blog
 ---
 
 {% for post in paginator.posts %}
-  <div class="blog-post-listing">
-    <a class="no-link-effect" href="{{ post.url }}">
+  <a class="no-link-effect" href="{{ post.url }}">
+    <div class="blog-post-listing">
       <h2><strong>{{ post.title }}</strong></h2>
       {% if post.description %}
         <h3 class="no-margin-top">{{ post.description }}</h3>
       {% endif %}
-      {{ post.excerpt }}
+      <p>{{ post.excerpt | strip_html }}</p>
       <h5 class="subtle no-margin-top">
         Published {{ post.date | date_to_long_string }} | {{ post.content | reading_time }} read
       </h5>
-    </a>
     </div>
+  </a>
 {% endfor %}
 
 {% if paginator.total_pages > 1 %}
