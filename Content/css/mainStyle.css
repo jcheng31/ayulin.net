@@ -50,10 +50,13 @@ p {
     bottom: 0;
     width: 25%;
     max-width: 300px;
+    background-color: white;
+    z-index: 9999;
   }
   .blog-body {
     margin-left: 25%;
     max-width: 1000px;
+    z-index: 1;
   }
 }
 @media (min-width: 1920px) {
