@@ -7,7 +7,7 @@ destination: Build
 permalink: /blog/:year/:month/:day/:title.html
 
 # Pagination
-paginate: 10
+paginate: 7
 paginate_path: "blog/page:num"
 
 # RSS Feed
