@@ -53,7 +53,7 @@ p {
   }
   .blog-body {
     margin-left: 25%;
-    max-width: 70%
+    max-width: 1000px;
   }
 }
 @media (min-width: 1920px) {
