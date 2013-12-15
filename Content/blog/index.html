@@ -8,8 +8,9 @@ title: blog
     <a class="no-link-effect" href="{{ post.url }}">
       <h2><strong>{{ post.title }}</strong></h2>
       {% if post.description %}
-        <h4 class="no-margin-top">{{ post.description }}</h4>
+        <h3 class="no-margin-top">{{ post.description }}</h3>
       {% endif %}
+      {{ post.excerpt }}
       <h5 class="subtle no-margin-top">
         Published {{ post.date | date_to_long_string }} | {{ post.content | reading_time }} read
       </h5>
