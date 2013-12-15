@@ -70,6 +70,6 @@ p {
 .subtitle {
   color: #666665;
 }
-.blog-post-body p {
+.blog-post-body p, .blog-post-body li {
   font-size: 120%;
 }
