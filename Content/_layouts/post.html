@@ -3,13 +3,15 @@ layout: blog
 ---
 
 <div class="blog-post-wrapper">
-  <h1><strong>{{ page.title }}</strong></h1>
-  {% if page.description %}
-  <h2 class="subtitle no-margin-top">{{ page.description }}</h2>
-  {% endif %}
-  <h5 class="subtle no-margin-top">
-    Published {{ page.date | date_to_long_string }} | {{ page.content | reading_time }} read
-  </h5>
+  <div class="page-header">
+    <h1><strong>{{ page.title }}</strong></h1>
+    {% if page.description %}
+    <h2 class="subtitle no-margin-top">{{ page.description }}</h2>
+    {% endif %}
+    <h5 class="subtle no-margin-top">
+      Published {{ page.date | date_to_long_string }} | {{ page.content | reading_time }} read
+    </h5>
+  </div>
   <div class="blog-post-body">
     {{ content }}
   </div>
