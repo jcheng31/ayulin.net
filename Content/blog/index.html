@@ -5,7 +5,7 @@ title: blog
 
 {% for post in paginator.posts %}
   <div class="blog-post-listing">
-    <a class="blog-post-link" href="{{ post.url }}">
+    <a class="no-link-effect" href="{{ post.url }}">
       <h2><strong>{{ post.title }}</strong></h2>
       {% if post.description %}
         <h4 class="no-margin-top">{{ post.description }}</h4>

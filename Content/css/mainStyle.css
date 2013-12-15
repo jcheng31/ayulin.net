@@ -35,10 +35,10 @@ p {
 .blog-post-listing {
   margin: 64px 0;
 }
-.blog-post-link {
+.no-link-effect {
   color: inherit;
 }
-.blog-post-link:hover, .blog-post-link:active {
+.no-link-effect:hover, .no-link-effect:active {
   text-decoration: inherit;
   color: inherit;
 }
