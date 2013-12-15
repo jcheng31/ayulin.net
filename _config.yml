@@ -11,6 +11,6 @@ paginate: 7
 paginate_path: "blog/page:num"
 
 # RSS Feed
-url: http://ayulin.net/blog
+url: http://ayulin.net
 author: Ayulin
 rss_path: blog/
