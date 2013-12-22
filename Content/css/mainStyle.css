@@ -76,3 +76,6 @@ p {
 .blog-post-body p, .blog-post-body ul, .blog-post-body ol {
   font-size: 18px;
 }
+.blog-post-body hr {
+  width: 30%;
+}
