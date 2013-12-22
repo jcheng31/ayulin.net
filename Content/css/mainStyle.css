@@ -79,3 +79,6 @@ p {
 .blog-post-body hr {
   width: 30%;
 }
+.blog-post-body img {
+  max-width: 100%;
+}
