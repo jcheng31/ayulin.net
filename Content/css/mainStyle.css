@@ -36,3 +36,6 @@ p {
 .subtitle {
   color: #666665;
 }
+.main-page-body hr {
+  width: 25%;
+}
