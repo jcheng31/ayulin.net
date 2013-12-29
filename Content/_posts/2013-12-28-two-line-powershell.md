@@ -33,72 +33,84 @@ Firstly, let's open up our PowerShell profile. Its location can be found by ente
 
 Assuming you haven't changed anything, posh-git's default profile should be loaded near the top.
 
-	# Load posh-git example profile
-	. 'C:\tools\poshgit\dahlbyk-posh-git-8aecd99\profile.example.ps1'
+{% highlight powershell %}
+# Load posh-git example profile
+. 'C:\tools\poshgit\dahlbyk-posh-git-8aecd99\profile.example.ps1'
+{% endhighlight %}
 
 Take note of the path (which may be different on your system), then comment or remove the lines - they won't be necessary, since we'll be initialising posh-git from within the main profile. Here's what we need to do that:
 
-	# Load posh-git module. INSERT YOUR POSH-GIT PATH HERE.
-	Import-Module 'POSH-GIT-PATH-HERE\posh-git'
-	
-	# Set up our prompt.
-	function global:prompt {
-	    $realLASTEXITCODE = $LASTEXITCODE
-	
-	    # Reset color, which can be messed up by Enable-GitColors
-	    $Host.UI.RawUI.ForegroundColor = $GitPromptSettings.DefaultForegroundColor
-	
-	    Write-Host($pwd.ProviderPath) -nonewline -ForegroundColor Green
-	
-	    Write-VcsStatus
-	
-	    # Prompt on newline, with cmder colours.
-	    Write-Host
-	    Write-Host ">" -nonewline -ForegroundColor DarkGray
-	
-	    $global:LASTEXITCODE = $realLASTEXITCODE
-	    return " "
-	}
-	
-	# More posh-git init.
-	Enable-GitColors
-	Start-SshAgent -Quiet
+{% highlight powershell %}
+# Load posh-git module. INSERT YOUR POSH-GIT PATH HERE.
+Import-Module 'POSH-GIT-PATH-HERE\posh-git'
+
+# Set up our prompt.
+function global:prompt {
+    $realLASTEXITCODE = $LASTEXITCODE
+
+    # Reset color, which can be messed up by Enable-GitColors
+    $Host.UI.RawUI.ForegroundColor = $GitPromptSettings.DefaultForegroundColor
+
+    Write-Host($pwd.ProviderPath) -nonewline -ForegroundColor Green
+
+    Write-VcsStatus
+
+    # Prompt on newline, with cmder colours.
+    Write-Host
+    Write-Host ">" -nonewline -ForegroundColor DarkGray
+
+    $global:LASTEXITCODE = $realLASTEXITCODE
+    return " "
+}
+
+# More posh-git init.
+Enable-GitColors
+Start-SshAgent -Quiet
+{% endhighlight %}
 
 ---
 
 Let's break it down.
 
-	# Load posh-git module. INSERT YOUR POSH-GIT PATH HERE.
-	Import-Module 'POSH-GIT-PATH-HERE\posh-git'
+{% highlight powershell %}
+# Load posh-git module. INSERT YOUR POSH-GIT PATH HERE.
+Import-Module 'POSH-GIT-PATH-HERE\posh-git'
+{% endhighlight %}
 
 As the comment says, this imports posh-git. Replace `POSH-GIT-PATH-HERE` with the actual path to the folder containing posh-git - in my case, it was `C:\tools\poshgit\dahlbyk-posh-git-8aecd99`.
-	
-	# Set up our prompt.
-	function global:prompt {
-	    $realLASTEXITCODE = $LASTEXITCODE
 
-	    # Reset color, which can be messed up by Enable-GitColors
-	    $Host.UI.RawUI.ForegroundColor = $GitPromptSettings.DefaultForegroundColor
-	
-	    Write-Host($pwd.ProviderPath) -nonewline -ForegroundColor Green
-	
-	    Write-VcsStatus
+{% highlight powershell %}
+# Set up our prompt.
+function global:prompt {
+    $realLASTEXITCODE = $LASTEXITCODE
+
+    # Reset color, which can be messed up by Enable-GitColors
+    $Host.UI.RawUI.ForegroundColor = $GitPromptSettings.DefaultForegroundColor
+
+    Write-Host($pwd.ProviderPath) -nonewline -ForegroundColor Green
+
+    Write-VcsStatus
+{% endhighlight %}
 
 Standard posh-git initialization, but with one change: `-ForegroundColor Green` outputs the directory path in green.
 
-	    # Prompt on newline, with cmder colours.
-	    Write-Host
-	    Write-Host ">" -nonewline -ForegroundColor DarkGray
+{% highlight powershell %}
+    # Prompt on newline, with cmder colours.
+    Write-Host
+    Write-Host ">" -nonewline -ForegroundColor DarkGray
+{% endhighlight %}
 
 This is what actually moves the input to the next line. Feel free to replace the standard `>` prompt character with your own (cmder uses a lambda, but I like the >). We're also changing the colours to dark gray for the character.
 
-		$global:LASTEXITCODE = $realLASTEXITCODE
-	    return " "
-	}
-	
-	# More posh-git init.
-	Enable-GitColors
-	Start-SshAgent -Quiet
+{% highlight powershell %}
+	$global:LASTEXITCODE = $realLASTEXITCODE
+    return " "
+}
+
+# More posh-git init.
+Enable-GitColors
+Start-SshAgent -Quiet
+{% endhighlight %}
 
 This was unchanged from the stock posh-git profile. You might have `Start-SshAgent` commented out in yours, though - I have it here so I just need to enter my SSH key's password once after booting (instead of every time I want to push to a remote.)
 
