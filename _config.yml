@@ -1,6 +1,6 @@
 name: ayulin.net
 markdown: redcarpet
-pygments: false
+pygments: true
 source: Content
 destination: Build
 
