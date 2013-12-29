@@ -6,7 +6,18 @@
     img: ./img/Fourcast.png,
     description: [
         "Fourcast is a weather app with the same idea as 4-bit Webther, but that's where the similarities end. It distills weather forecasts down into their four most important components: the temperature, conditions, wind speed, and relative humidity.",
-        "Fourcast is available on the <a href='http://windowsphone.com/s?appid=4d21bde6-841b-484d-a7c9-95c7a1e5cd56'>Windows Phone Store</a>. It uses <a href='http://www.wunderground.com/?apiref=1e19de373d7ed5c0'>Weather Underground</a> for its data."
+        "Fourcast is available on the <a href='http://windowsphone.com/s?appid=4d21bde6-841b-484d-a7c9-95c7a1e5cd56'>Windows Phone Store</a>. Its forecast data comes from <a href='http://www.wunderground.com/?apiref=1e19de373d7ed5c0'>Weather Underground</a>."
+    ]
+}
+
+- {
+    name: Marginator,
+    platform: AutoHotKey,
+    url: "https://gist.github.com/jcheng31/7169828/",
+    img: ./img/marginator.png,
+    description: [
+        "Marginator came about after I got a large widescreen monitor, and realised a lot of websites didn't centre their content in the browser window. It makes resizing and manually dragging windows to the centre of the screen a thing of the past.",
+        "Win+Shift+Up resizes the active window to 75% of the screen's width and centres it. Win+Shift+C centres it without resizing."
     ]
 }
 
