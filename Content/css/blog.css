@@ -4,6 +4,9 @@
 .blog-body {
   padding: 0 24px;
 }
+.blog-body p {
+  margin-bottom: 16px;
+}
 .blog-post-listing {
   margin: 64px 0;
 }
