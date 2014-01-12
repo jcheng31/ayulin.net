@@ -1,7 +1,7 @@
 - {
     name: Fourcast,
     period: May 2012 to Present,
-    platform: Windows Phone 7/8 (C# and XAML),
+    platform: Windows Phone (C# and XAML),
     url: ./fourcast/index.html,
     img: ./img/Fourcast.png,
     description: [
@@ -18,6 +18,17 @@
     description: [
         "Marginator came about after I got a large widescreen monitor, and realised a lot of websites didn't centre their content in the browser window. It makes resizing and manually dragging windows to the centre of the screen a thing of the past.",
         "Win+Shift+Up resizes the active window to 75% of the screen's width and centres it. Win+Shift+C centres it without resizing."
+    ]
+}
+
+- {
+    name: Coursemology,
+    platform: "HTML/CSS/JS, Ruby on Rails",
+    url: "https://github.com/Coursemology/coursemology.org",
+    img: ./img/coursemology.png,
+    description: [
+        "Coursemology is an online gamification platform for education - students complete \"missions\" instead of assignments, and get experience points for doing so.",
+        "I worked on the initial frontend implementation of Coursemology's Lesson Plan and Workbin, as well as made some backend changes to the former."
     ]
 }
 
