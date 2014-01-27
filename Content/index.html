@@ -4,7 +4,7 @@ layout: default
 
 <div class="container main-page-body">
   <div class="row">
-    <div class="col-sm-8 col-sm-offset-2">
+    <div class="col-md-10 col-md-offset-1">
       <h1>
         Hello.
       </h1>
@@ -21,7 +21,7 @@ layout: default
   </div>
 
   <div class="row">
-    <div class="col-sm-8 col-sm-offset-2">
+    <div class="col-md-10 col-md-offset-1">
       <h1>
         Things.
       </h1>
@@ -34,7 +34,7 @@ layout: default
   {% for project in site.data.projects %}
   <hr />
   <div class="row">
-    <div class="col-md-5 col-md-offset-2">
+    <div class="col-md-6 col-md-offset-1">
       <h2 class="no-margin-top">
         {% if project.url %}
         <a href="{{ project.url }}">
@@ -60,7 +60,7 @@ layout: default
       {% endfor %}
     </div>
     {% if project.img %}
-    <img class="img-responsive col-md-3" src="{{ project.img }}" />
+    <img class="img-responsive col-md-4" src="{{ project.img }}" />
     {% endif %}
   </div>
   {% endfor %}

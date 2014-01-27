@@ -1,4 +1,16 @@
 - {
+    name: PowerPointLabs,
+    platform: C#,
+    url: "http://www.powerpointlabs.info",
+    img: ./img/powerpointlabs.png,
+    description: [
+        "PowerPointLabs is a plugin for Microsoft PowerPoint that adds features to make creating impressive presentations simpler.",
+        "I developed the Auto Narrate and Auto Captions components, which allow presenters to easily 'mock' out their speech,
+         or create packaged presentations that narrate themselves through the use of synthesized voice."
+    ]
+}
+
+- {
     name: Fourcast,
     period: May 2012 to Present,
     platform: Windows Phone (C# and XAML),
