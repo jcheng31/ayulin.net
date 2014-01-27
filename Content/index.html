@@ -59,8 +59,9 @@ layout: default
       </p>
       {% endfor %}
     </div>
-    
+    {% if project.img %}
     <img class="img-responsive col-md-3" src="{{ project.img }}" />
+    {% endif %}
   </div>
   {% endfor %}
 </div>
