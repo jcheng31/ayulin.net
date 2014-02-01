@@ -5,7 +5,7 @@
     img: ./img/powerpointlabs.png,
     description: [
         "PowerPointLabs is a plugin for Microsoft PowerPoint that adds features to make creating impressive presentations simpler.",
-        "I developed the Auto Narrate and Auto Captions components, which allow presenters to easily 'mock' out their speech,
+        "I developed the Auto Narrate and Auto Captions components, which allow presenters to easily mock out their speech,
          or create packaged presentations that narrate themselves through the use of synthesized voice."
     ]
 }
