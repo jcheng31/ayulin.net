@@ -1,7 +1,7 @@
 name: ayulin.net
 markdown: redcarpet
 pygments: true
-source: Content
+source: ./Content
 
 permalink: /blog/:year/:month/:day/:title.html
 
