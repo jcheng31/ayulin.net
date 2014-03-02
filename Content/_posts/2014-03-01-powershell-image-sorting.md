@@ -39,7 +39,7 @@ Again: priorities. >.>
 
 So let's do it.
 
-The first version is pretty simple - more of a proof of concept. I'm using the full cmdlet names here, whereas you'd probably use an alias instead if you were to actually things out in the shell (for example, `Get-ChildItem` becomes `gci`, the DOS-style `dir`, or the UNIX-friendly `ls`.)
+The first version is pretty simple - more of a proof of concept. I'm using the full cmdlet names here, whereas you'd probably use an alias instead if you were to actually type things out in the shell (for example, `Get-ChildItem` becomes `gci`, the DOS-style `dir`, or the UNIX-friendly `ls`.)
 
 {% highlight powershell %}
 foreach ($item in Get-ChildItem | Where-Object Extension -In ".jpg", ".bmp", ".png") {
