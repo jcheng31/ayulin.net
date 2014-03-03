@@ -7,7 +7,7 @@ date: 2014-03-01 20:54:56 +08:00
 
 I've accumulated quite a number of wallpapers over the last few years; close to two thousand images totalling almost 3.5 GB and counting, in fact. They came from a whole hodgepodge of places online, in various sizes and aspect ratios, and I have them in my ~~Sky~~OneDrive folder so they get synced across my desktop and laptop.
 
-My old desktop monitor was had a resolution of 1680 by 1050, a 16:10 aspect ratio. My recent laptops have had 1080p (16:9) screens. Eventually, I ended up getting a 16:9 screen for my desktop as well.
+My old desktop monitor had a resolution of 1680 by 1050, a 16:10 aspect ratio. My recent laptops have had 1080p (16:9) screens. Eventually, I ended up getting a 16:9 screen for my desktop as well.
 
 I wrote some PowerShell scripts to go through my wallpaper collection and grab higher resolution replacements where they were available, though that still left me with a large number of images that weren't replaced. Those scripts also only targeted one particular wallpaper site, too - everything else was left untouched.
 
