@@ -7,6 +7,7 @@
 .blog-post-listing {
   margin: 64px 0;
 }
+
 @media (min-width: 700px) {
   .blog-body {
     margin-left: auto;
@@ -38,4 +39,13 @@
 }
 .blog-post-body img {
   max-width: 100%;
+}
+.blog-post-img-wrapper {
+  margin: 0 -100px;
+}
+
+@media (max-width: 1000px) {
+  .blog-post-img-wrapper {
+    margin: 0;
+  }
 }
