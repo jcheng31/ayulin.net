@@ -5,7 +5,7 @@ redcarpet:
 pygments: true
 source: ./Content
 
-permalink: /blog/:title.html
+permalink: /blog/:year/:title.html
 
 # Pagination
 paginate: 7
