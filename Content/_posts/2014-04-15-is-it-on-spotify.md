@@ -38,6 +38,12 @@ Check it out [here](https://jcheng31.github.io/isitonspotify/), and (if you want
 
 ---
 
+My initial guess was correct: the song hadn't actually been removed entirely, though it's only available in the US, Canada, and Australia. Other tracks are available in many more regions, though.
+
+Wish I knew how these licensing things work.
+
+---
+
 <a id="footnote1" href="#ref1">[1]</a> We were far away enough and the ambient sound was loud enough that I wasn't confident that my phone would be able to identify it. I asked a friend if he happened to know what it was, and he walked over and asked someone he knew who worked there.
 
 <a id="footnote2" href="#ref2">[2]</a> I'd also been looking for an excuse to try [knockout.js](http://knockoutjs.com/) - MVVM on the web? Sign me up.
