@@ -39,6 +39,9 @@
 }
 .blog-post-body img {
   max-width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .blog-post-img-wrapper {
   margin: 0 -100px;
