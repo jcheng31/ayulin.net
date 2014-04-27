@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Setting The Pace
+title: Setting the Pace
 description: "Custom speeds for IVLE's Silverlight-based webcasts."
 date: 2014-04-27 14:30
 ---
