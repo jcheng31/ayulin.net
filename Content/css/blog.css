@@ -35,10 +35,16 @@
   font-size: 18px;
 }
 .blog-post-body hr {
+  border-color: #ddd;
   width: 30%;
 }
 .blog-post-body img {
   max-width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.center {
   display: block;
   margin-left: auto;
   margin-right: auto;
