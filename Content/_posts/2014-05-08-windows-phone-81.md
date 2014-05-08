@@ -75,7 +75,7 @@ phone, which is great.
 A nice side-effect of all notifications being unified is that any notification
 at all, regardless of source - individual apps, email accounts, or SMS - can
 now be customised from within the OS' settings. That means the ability to toggle
-the pop-over toast notifications, vibration, and sound on a per-thing basis.
+the pop-over toast notifications, vibration, and sound on a per-*thing* basis.
 Even better is the ability to choose custom notification tones for everything
 from one place, which I really like: I've got different tones for each email
 account now, and it's finally possible to audibly tell which app has triggered a
