@@ -32,9 +32,9 @@ manufacturers might include.
 It seems most people who tried did manage to update without any issues, though
 it didn't work out as well for me. Wi-Fi and mobile data didn't work afterwards,
 which was only resolved by hard-resetting the phone, wiping everything from it.
-Signing back in automatically restored my apps and text messages from the cloud,
-though apps didn't have their data backed up and I had to redo my Start screen
-layout.
+Signing back in automatically restored my apps and text messages from *the
+cloud*, though apps didn't have their data backed up and I had to redo my Start
+screen layout.
 
 Funnily enough, app data and Start screen layouts are now both backed up to *the
 cloud* in WP8.1.
