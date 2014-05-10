@@ -8,7 +8,7 @@ title: blog
     <div class="blog-post-listing">
       <h2><strong>{{ post.title }}</strong></h2>
       {% if post.description %}
-        <h3 class="no-margin-top">{{ post.description }}</h3>
+        <h3 class="subtitle no-margin-top">{{ post.description }}</h3>
       {% endif %}
       <p>{{ post.excerpt | strip_html }}</p>
       <h5 class="subtle no-margin-top">
