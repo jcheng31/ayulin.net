@@ -5,7 +5,7 @@ description: "Custom speeds for IVLE's Silverlight-based webcasts."
 date: 2014-04-27 14:30
 ---
 
-For one reason or another (read: I have no idea why, but...), the few webcasts I've watched recently seem to work better when viewed faster than real-time. I’d download the MP4 version, open it up in VLC, and use the playback speed controls to speed things up anywhere from 1.1, on one occasion, 1.3 times the normal rate.
+For one reason or another (read: I have no idea why, but...), the few webcasts I've watched recently seem to work better when viewed faster than real-time. I’d download the MP4 version, open it up in VLC, and use the playback speed controls to speed things up anywhere from 1.1 to, on one occasion, 1.3 times the normal rate.
 
 One course, however, doesn’t work well with this plan: the MP4 version opens up in a new window instead of downloading, and the audio plays while the image remains black. There’s probably a way to fix and/or work around this, but I’m not really interested enough to find it. :|
 
