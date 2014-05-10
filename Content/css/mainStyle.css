@@ -1,47 +1,59 @@
+@font-face {
+    font-family:'pt_sansregular';
+    src: url('/css/fonts/PTS55F-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 h1, h2, h3, h4, h5, h6, p, li, a {
-  font-family:"Lato", sans-serif;
+    font-family:'pt_sansregular', sans-serif;
+}
+h1 {
+  font-size: 48px;
+}
+h2 {
+  font-size: 36px;
 }
 html, body {
-  height: 100%;
+    height: 100%;
 }
 .no-margin-top {
-  margin-top: 0;
+    margin-top: 0;
 }
 .no-margin-bottom {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 p {
-  font-size: 16px;
+    font-size: 16px;
 }
 .center-text {
-  text-align: center;
+    text-align: center;
 }
 .border-right {
-  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
 }
 .image-border {
-  border: 3px solid white;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    border: 3px solid white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 .rounded-corners {
-  border-radius: 5px;
+    border-radius: 5px;
 }
 .box-shadow {
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 .subtle {
-  color: #999
+    color: #999
 }
 .no-link-effect {
-  color: inherit;
+    color: inherit;
 }
 .no-link-effect:hover, .no-link-effect:active {
-  text-decoration: inherit;
-  color: inherit;
+    text-decoration: inherit;
+    color: inherit;
 }
 .subtitle {
-  color: #666665;
+    color: #666665;
 }
 .main-page-body hr {
-  width: 25%;
+    width: 25%;
 }
