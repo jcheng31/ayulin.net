@@ -2,6 +2,11 @@
 layout: post
 title: 'Yet Another "How To Install Jekyll on Windows" Post.'
 date: 2014-03-09 18:00 +08:00
+excerpt: "It seems there's no shortage of these. (I guess this doesn't help in that respect either.)"
+---
+
+**Update (12th May 2014):** I came across [this](https://github.com/juthilo/run-jekyll-on-windows/) linked from within an issue on Jekyll's GitHub repository, which is much more up to date (and well-maintained) than this post.
+
 ---
 
 It seems there's no shortage of these. (I guess this doesn't help in that respect either.)
