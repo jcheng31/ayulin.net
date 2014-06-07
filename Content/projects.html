@@ -1,0 +1,52 @@
+---
+layout: default
+title: "Projects"
+---
+
+<div class="container main-page-body">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+    <a href="/"><small>HOME</small></a>
+      <h1>
+        Things.
+      </h1>
+      <p>
+        Here're some of the projects I've worked on. I've also got some other stuff over at <a href="https://www.github.com/jcheng31">GitHub</a>.
+      </p>
+    </div>
+  </div>
+
+  {% for project in site.data.projects %}
+  <hr />
+  <div class="row">
+    <div class="col-md-6 col-md-offset-1">
+      <h2 class="no-margin-top">
+        {% if project.url %}
+        <a href="{{ project.url }}">
+          {% endif %}
+            {{ project.name }}
+          {% if project.url %}
+          </a>
+        {% endif %}
+        <small>
+          {{ project.platform }}
+        </small>
+      </h2>
+      {% if project.url %}
+      <a href="{{ project.url }}">
+        {% endif %}
+        {% if project.url %}
+        </a>
+      {% endif %} 
+      {% for paragraph in project.description %}
+      <p>
+        {{ paragraph }}
+      </p>
+      {% endfor %}
+    </div>
+    {% if project.img %}
+    <img class="img-responsive col-md-4" src="{{ project.img }}" />
+    {% endif %}
+  </div>
+  {% endfor %}
+  </div>

@@ -3,65 +3,23 @@ layout: default
 ---
 
 <div class="container main-page-body">
-  <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-      <h1>
-        Hello.
-      </h1>
-      <p>
-        My name's Jerome Cheng. I'm an undergraduate studying Computer Science at the National University of Singapore.
-      </p>
-      <p>
-        I usually go by <i>Ayulin</i> online, and can be found on <a href="https://twitter.com/Ayulin">Twitter</a> or <a href="https://steamcommunity.com/id/Ayulin">Steam</a>.
-      </p>
-      <p>
-        Occasionally I ramble about things <a href="./blog/">here</a>.
-      </p>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <h1>
+                Hello.
+            </h1>
+            <p>
+                My name's Jerome Cheng. I'm an undergraduate studying Computer Science at the National University of Singapore.
+            </p>
+            <p>
+                I usually go by <i>Ayulin</i> online, and can be found on <a href="https://twitter.com/Ayulin">Twitter</a> or <a href="https://steamcommunity.com/id/Ayulin">Steam</a>.
+            </p>
+            <p>
+                Some of the projects I've worked on can be found <a href="./projects.html">here</a>, or over at <a href="https://www.github.com/jcheng31">GitHub</a>.
+            </p>
+            <p>
+                Occasionally I ramble about things <a href="./blog/">here</a>.
+            </p>
+        </div>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-      <h1>
-        Things.
-      </h1>
-      <p>
-        Here're some of the projects I've worked on. I also have some other stuff over at <a href="https://www.github.com/jcheng31">GitHub</a>.
-      </p>
-    </div>
-  </div>
-
-  {% for project in site.data.projects %}
-  <hr />
-  <div class="row">
-    <div class="col-md-6 col-md-offset-1">
-      <h2 class="no-margin-top">
-        {% if project.url %}
-        <a href="{{ project.url }}">
-          {% endif %}
-            {{ project.name }}
-          {% if project.url %}
-          </a>
-        {% endif %}
-        <small>
-          {{ project.platform }}
-        </small>
-      </h2>
-      {% if project.url %}
-      <a href="{{ project.url }}">
-        {% endif %}
-        {% if project.url %}
-        </a>
-      {% endif %} 
-      {% for paragraph in project.description %}
-      <p>
-        {{ paragraph }}
-      </p>
-      {% endfor %}
-    </div>
-    {% if project.img %}
-    <img class="img-responsive col-md-4" src="{{ project.img }}" />
-    {% endif %}
-  </div>
-  {% endfor %}
 </div>
