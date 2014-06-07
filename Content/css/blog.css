@@ -4,8 +4,11 @@
 .blog-body p {
   margin-bottom: 16px;
 }
-.blog-post-listing {
-  margin: 48px 0;
+.blog-post-wrapper, .blog-post-listing {
+  margin: 0 12px;
+}
+.page-header {
+  margin-top: 0;
 }
 
 @media (min-width: 700px) {
@@ -27,9 +30,9 @@
     background-color: white;
     z-index: 9999;
   }
-}
-.blog-post-wrapper {
-  margin-top: 64px;
+  .blog-post-wrapper, .blog-post-listing {
+    margin-top: 64px;
+  }
 }
 .blog-post-body p, .blog-post-body ul, .blog-post-body ol {
   font-size: 18px;
