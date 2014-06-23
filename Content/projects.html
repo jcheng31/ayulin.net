@@ -45,7 +45,9 @@ title: "Projects"
       {% endfor %}
     </div>
     {% if project.img %}
-    <img class="img-responsive col-md-4" src="{{ project.img }}" />
+    <div class="col-md-4">
+      <img src="{{ project.img }}" />
+    </div>
     {% endif %}
   </div>
   {% endfor %}
