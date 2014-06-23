@@ -11,7 +11,7 @@ excerpt: "It seems there's no shortage of these. (I guess this doesn't help in t
 
 It seems there's no shortage of these. (I guess this doesn't help in that respect either.)
 
-I noticed a bunch of other guides (including [the one](www.madhur.co.in/blog/2011/09/01/runningjekyllwindows.html) linked from Jekyll's site itself) were fairly out of date, so here's my no-nonsense take on how to get [Jekyll](http://www.jekyllrb.com) up and running on Windows as quickly as possible.
+I noticed a bunch of other guides (including [the one](http://www.madhur.co.in/blog/2011/09/01/runningjekyllwindows.html) linked from Jekyll's site itself) were fairly out of date, so here's my no-nonsense take on how to get [Jekyll](http://www.jekyllrb.com) up and running on Windows as quickly as possible.
 
 > Well, okay, maybe with some nonsense. I've included some side comments in blockquotes like this. They aren't really part of the instructions, so feel free to skip them if you're in a rush.
 
