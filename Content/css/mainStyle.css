@@ -57,3 +57,46 @@ p {
 .main-page-body hr {
     width: 25%;
 }
+
+.slide-in {
+    animation-duration: 1s;
+    animation-name: slidein;
+
+    transition: all 1s cubic-bezier(0.165, 0.840, 0.440, 1.000);
+}
+
+.slide-in:nth-child(1) {
+    animation-delay: 25ms;
+}
+
+.slide-in:nth-child(2) {
+    animation-delay: 50ms;
+}
+
+.slide-in:nth-child(3) {
+    animation-delay: 75ms;
+}
+
+.slide-in:nth-child(4) {
+    animation-delay: 100ms;
+}
+
+.slide-in:nth-child(5) {
+    animation-delay: 125ms;
+}
+
+@keyframes slidein {
+    from {
+        margin-left: 100%;
+        width: 200%;
+    }
+
+    to {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+.no-scroll {
+    overflow: hidden;
+}
