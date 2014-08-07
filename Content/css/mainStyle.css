@@ -57,3 +57,44 @@ p {
 .main-page-body hr {
     width: 25%;
 }
+
+.slide-in {
+    animation-duration: 500ms;
+    animation-name: slidein;
+
+    transition: all 1s cubic-bezier(0.165, 0.840, 0.440, 1.000);
+}
+
+.fade-in {
+    animation-duration: 1.5s;
+    animation-name: fadein;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slidein {
+    from {
+        margin-left: -100%;
+    }
+
+    to {
+        margin-left: 0;
+    }
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    45% {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.no-scroll {
+    overflow: hidden;
+}
