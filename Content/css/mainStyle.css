@@ -66,14 +66,9 @@ p {
 }
 
 .fade-in {
-    animation-delay: 500ms;
-    animation-duration: 1s;
+    animation-duration: 1.5s;
     animation-name: fadein;
     animation-fill-mode: forwards;
-
-    opacity: 0;
-
-    transition: all 1s cubic-bezier(0.165, 0.840, 0.440, 1.000);
 }
 
 @keyframes slidein {
@@ -90,6 +85,10 @@ p {
 
 @keyframes fadein {
     from {
+        opacity: 0;
+    }
+
+    45% {
         opacity: 0;
     }
 
