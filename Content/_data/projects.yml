@@ -4,7 +4,7 @@
     url: "https://jcheng31.github.io/isitonspotify/",
     description: [
         "A quick way of checking if a track is available on Spotify, and in which regions it can be found.",
-        "It makes use of the Spotify <a href='https://developer.spotify.com/technologies/web-api/'>Metadata API</a>, and the <a href='http://knockoutjs.com/'>knockout.js</a> library."
+        "It makes use of the Spotify <a href='https://developer.spotify.com/web-api/'>Web API</a>, and the <a href='http://knockoutjs.com/'>knockout.js</a> library."
     ]
 }
 
