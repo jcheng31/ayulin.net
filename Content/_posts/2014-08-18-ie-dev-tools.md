@@ -30,6 +30,6 @@ A redirect that ended up being blocked for security reasons by the browser.
 
 And so everything worked fine when deployed, but not locally.
 
-The fix was simple - just changing the URL in the code to include HTTPS at the start. Getting there, though, took more time than I'd have liked.
+The fix was simple - just changing the URL in the code to include HTTPS at the start.
 
 Thanks, IE.
