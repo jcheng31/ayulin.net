@@ -16,7 +16,7 @@ Even stranger, the problem only occurred when running locally. Everything worked
 
 I thought it had might somehow have something to do with the way I was hosting it locally - just using Python's `SimpleHTTPServer` - though switching to `node-serve` or even Jekyll's `serve` (heh) didn't make a difference.
 
-After some more fruitless searching, I decided on a whim to fire up Internet Explorer 11 and check out the F12 Developer Tools (which are, funnily enough, no longer bound to the actual F12 key). That gave an interesting series of messages, instead of just the one that Firefox Aurora did:
+After some more fruitless searching, I decided on a whim to fire up Internet Explorer 11 and check out the F12 Developer Tools (which ~~are, funnily enough, no longer~~ [totally are](https://twitter.com/Ayulin/status/501527510471827456) bound to the actual F12 key). That gave an interesting series of messages, instead of just the one that Firefox Aurora did:
 
 ![](/blog/img/Misc/2014/08/ie-dev-tools-2.png)
 
