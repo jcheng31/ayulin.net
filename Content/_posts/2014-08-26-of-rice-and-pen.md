@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Of Rice and Pens
+title: Of Rice and Pen
 description: And terrible puns.
 date: 2014-08-26 11:29:24 +08:00
 ---
