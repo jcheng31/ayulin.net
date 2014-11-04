@@ -2,14 +2,16 @@ name: ayulin.net
 markdown: redcarpet
 redcarpet:
   extensions: ["strikethrough"]
-pygments: true
+highlighter: pygments
 source: ./Content
+timezone: Asia/Singapore
+encoding: utf-8
 
-permalink: /blog/:year/:title.html
+permalink: /blog/:year/:title
 
 # Pagination
-paginate: 7
 paginate_path: "blog/page:num"
+paginate: 7
 
 # RSS Feed
 url: http://ayulin.net
