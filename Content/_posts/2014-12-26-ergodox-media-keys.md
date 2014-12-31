@@ -35,7 +35,7 @@ There are four layers I use: a Colemak base layer, a layer with function (and no
 
 I also changed things slightly, changing the toggle for the function layer which I never used (since I had other keys that would activate the layer when held instead) to toggle the QWERTY layer instead, which freed up that key for Caps Lock (or Backspace in QWERTY).
 
-That left me with [this layout](https://github.com/jcheng31/tmk_keyboard/blob/colemak/keyboard/ergodox/keymap_colemak.h). I opted to use no-ops instead of having keys be transparent in most cases, except on the function/media layer - the key "above" that which would be held down to toggle that layer needed to be transparent, or else the layer would end up being stuck on.
+That left me with [this layout](https://github.com/jcheng31/tmk_keyboard/blob/colemak/keyboard/ergodox/keymap_colemak.h). I opted to use no-ops instead of having keys be transparent in most cases, except on the function/media layer - the key "above" that which would be held down to toggle that layer needed to be transparent, or else the layer would end up being stuck on. *Update: I also made the keys above the modifiers (Ctrl, Alt, and Shift) transparent, so they would be properly released after a key combination involving them and an F-key.*
 
 Running `make -f Makefile.pjrc colemak` from `/keyboard/ergodox` builds the actual `.hex` which can be loaded using the Teensy loader.
 
