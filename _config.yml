@@ -14,7 +14,5 @@ paginate_path: "/blog/page:num"
 paginate: 7
 
 # RSS Feed
-url: http://ayulin.net
+url: http://ayulin.net/blog
 author: Ayulin
-rss_path: "/blog/"
-rss_post_limit: 10
