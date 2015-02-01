@@ -2,12 +2,12 @@ name: ayulin.net
 markdown: redcarpet
 redcarpet:
   extensions: ["strikethrough"]
-highlighter: pygments
+highlighter: rouge
 source: ./Content
 timezone: Asia/Singapore
 encoding: utf-8
 
-permalink: /blog/:year/:title
+permalink: /blog/:year/:title/
 
 # Pagination
 paginate_path: "/blog/page:num"
