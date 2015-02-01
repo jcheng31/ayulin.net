@@ -5,7 +5,9 @@ date: 2014-03-09 18:00 +08:00
 excerpt: "It seems there's no shortage of these. (I guess this doesn't help in that respect either.)"
 ---
 
-**Update (12th May 2014):** I came across [this](https://github.com/juthilo/run-jekyll-on-windows/) linked from within an issue on Jekyll's GitHub repository, which is much more up to date (and well-maintained) than this post.
+**Update (1st Feb 2015):** Jekyll 3 beta 1 is out - if you're interested in running that instead, check out [this post.]({% post_url 2015-02-01-jekyll-3-beta-on-windows %})
+
+**Update (12th May 2014):** I came across [this](http://jekyll-windows.juthilo.com/) linked from within an issue on Jekyll's GitHub repository, which is much more up to date (and well-maintained) than this post.
 
 ---
 
