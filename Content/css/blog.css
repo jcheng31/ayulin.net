@@ -1,5 +1,7 @@
 .left-sidebar {
   padding: 24px 0;
+  background-color: white;
+  z-index: 9999;
 }
 .blog-body p {
   margin-bottom: 16px;
@@ -27,8 +29,6 @@
     top: 0;
     bottom: 0;
     width: 280px;
-    background-color: white;
-    z-index: 9999;
   }
   .blog-post-wrapper, .blog-post-listing {
     margin-top: 64px;
