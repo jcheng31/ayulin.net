@@ -50,7 +50,7 @@
 		<div class = "row">
 			<div class="col-sm-9">
 				<h1>Changelog</h1>
-				{% for patch in site.categories["fourcast patches"] %}
+				{% for patch in site.categories["Fourcast Patches"] %}
 					<div class="row col-sm-12">
 						<h2>{{ patch.version }} - {{ patch.date | date_to_long_string }} {% if patch.description %}<small>"{{ patch.description }}"</small>{% endif %}</h2>
 						{{ patch.content }}
