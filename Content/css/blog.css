@@ -13,7 +13,7 @@ h1, h2 {
   margin-bottom: 16px;
 }
 .blog-post-wrapper, .blog-post-listing {
-  margin: 0 12px;
+  margin: 64px 24px;
 }
 .page-header {
   margin-top: 0;
@@ -35,9 +35,6 @@ h1, h2 {
     top: 0;
     bottom: 0;
     width: 280px;
-  }
-  .blog-post-wrapper, .blog-post-listing {
-    margin-top: 64px;
   }
 }
 .blog-post-body p, .blog-post-body ul, .blog-post-body ol {
