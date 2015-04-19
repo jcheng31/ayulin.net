@@ -15,7 +15,6 @@ h2 {
 }
 html, body {
     height: 100%;
-    background-image: url('/img/background.png');
 }
 .no-margin-top {
     margin-top: 0;
