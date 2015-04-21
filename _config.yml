@@ -6,6 +6,7 @@ highlighter: rouge
 source: ./Content
 timezone: Asia/Singapore
 encoding: utf-8
+gems: ['jekyll-paginate']
 
 permalink: /blog/:year/:title/
 
