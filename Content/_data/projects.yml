@@ -17,7 +17,7 @@
         "PowerPointLabs is a plugin for Microsoft PowerPoint that adds features to make creating impressive presentations simpler.",
         "I developed the Auto Narrate and Auto Captions components, which allow presenters to easily mock out their speech
          or create packaged presentations that narrate themselves through the use of synthesized voice.",
-        "I'm also currently responsible for maintaining the project's website and documentation, which uses <a href='http://jekyllrb.com'>Jekyll</a>."
+        "I also created the project's website, and was responsible for maintaining its documentation. Like this site, it uses <a href='http://jekyllrb.com/'>Jekyll.</a>"
     ]
 }
 
