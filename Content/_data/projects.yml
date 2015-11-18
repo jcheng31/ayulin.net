@@ -25,7 +25,7 @@
     name: Fourcast,
     period: May 2012 to Present,
     platform: "Windows Phone (C#, XAML)",
-    url: ./fourcast/index.html,
+    url: /fourcast/index.html,
     img: ./img/Fourcast.png,
     description: [
         "Fourcast distills weather forecasts down into their four most important components: the temperature, conditions, wind speed, and relative humidity.",
@@ -59,7 +59,7 @@
     name: ISAAC,
     period: December 2011 to May 2012,
     platform: "HTML/CSS/JS",
-    url: ./isaac/index.html,
+    url: /isaac/index.html,
     img: ./img/ISAAC.png,
     description: [
         "ISAAC is a browser-based star system simulator - like Universe Sandbox, but much simpler.",

@@ -7,7 +7,7 @@ date: 2015-04-19 14:31 +08:00
 
 Not every place in the world uses the full stop (or period) as a decimal mark. Quite a few use the comma instead.
 
-Simple and perhaps obvious to some, though it's bitten me twice now. I first ran into it three years ago in [Fourcast]({% post_url /Fourcast Patches/2012-07-14-Fourcast-0-4 %}) and fixed it there. More recently, the same thing came up again in [ForecastPCL](https://github.com/jcheng31/ForecastPCL/issues/5) - I'd completely forgotten about it. Hopefully writing this will help in remembering the problem in the future [[1]](#footnote-1).
+Simple and perhaps obvious to some, though it's bitten me twice now. I first ran into it three years ago in [Fourcast]({% post_url 2012-07-14-Fourcast-0-4 %}) and fixed it there. More recently, the same thing came up again in [ForecastPCL](https://github.com/jcheng31/ForecastPCL/issues/5) - I'd completely forgotten about it. Hopefully writing this will help in remembering the problem in the future [[1]](#footnote-1).
 
 Both Fourcast and ForecastPCL involve converting latitude and longitude coordinates (with their decimal point) to or from strings. Both rely on a web service which uses these coordinates with a full stop as the decimal. And both failed when the code ran on a device in a locale where the comma is the decimal mark instead.
 
