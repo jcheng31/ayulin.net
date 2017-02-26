@@ -4,13 +4,13 @@ layout: blog
 
 <div class="blog-post-wrapper">
   <div class="page-header">
-    <h1><strong>{{ page.title }}</strong></h1>
+    <h5 class="subtle" title="{{ page.date }}">
+      {{ page.date | date_to_long_string }}
+    </h5>
+    <h1 class="no-margin-top"><strong>{{ page.title }}</strong></h1>
     {% if page.description %}
     <h3 class="subtitle no-margin-top">{{ page.description }}</h3>
     {% endif %}
-    <h5 class="subtle no-margin-top" title="{{ page.date }}">
-      Published {{ page.date | date_to_long_string }}. A {{ page.content | reading_time }} minute read.
-    </h5>
   </div>
   <div class="blog-post-body">
     {{ content }}

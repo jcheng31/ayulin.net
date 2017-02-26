@@ -6,14 +6,14 @@ title: "blog"
 {% for post in paginator.posts %}
   <a class="no-link-effect" href="{{ post.url }}">
     <div class="blog-post-listing">
-      <h2><strong>{{ post.title }}</strong></h2>
+      <h5 class="subtle">
+        {{ post.date | date_to_long_string }}
+      </h5>
+      <h1 class="no-margin-top"><strong>{{ post.title }}</strong></h1>
       {% if post.description %}
         <h3 class="subtitle no-margin-top">{{ post.description }}</h3>
       {% endif %}
       <p>{{ post.excerpt | strip_html }}</p>
-      <h5 class="subtle no-margin-top">
-        Published {{ post.date | date_to_long_string }}. A {{ post.content | reading_time }} minute read.
-      </h5>
     </div>
   </a>
   <hr />
