@@ -2,6 +2,7 @@
 layout: post
 title: Working with WSL
 description: Not there yet, but so promising.
+categories: [Bash on Windows, WSL, Linux]
 ---
 
 Bash on Ubuntu on Windows, or the Windows Subsystem for Linux (or WSL), is a little over one year old now, and still a mouthful to say. When it was announced, I tweeted:
